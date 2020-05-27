@@ -5,4 +5,8 @@
         <RootNamespace>University_DB1_FirstProject</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="SQLs\StoredProcedures" />
+    </ItemGroup>
+
 </Project>
