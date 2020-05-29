@@ -1,3 +1,4 @@
+USE [DB1-FirstProject]
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -14,7 +15,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/5/27
 -- Description:	Insert a new property into dbo.DB1P_Properties
 -- =============================================

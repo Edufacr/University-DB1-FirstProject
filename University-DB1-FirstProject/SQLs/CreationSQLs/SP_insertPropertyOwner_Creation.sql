@@ -1,3 +1,4 @@
+USE [DB1-FirstProject]
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -14,7 +15,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/5/28
 -- Description:	Insert a property owner to DB1P_PropertyOwners
 -- =============================================
