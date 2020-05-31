@@ -128,7 +128,7 @@ CREATE TABLE dbo.DB1P_Properties
 DROP TABLE IF EXISTS dbo.DB1P_Doc_Id_Types;
 CREATE TABLE dbo.DB1P_Doc_Id_Types
 	(
-	Id int NOT NULL IDENTITY (1, 1),
+	Id int NOT NULL,
 	Name varchar(50) NOT NULL
 	)  ON [PRIMARY]
 GO
