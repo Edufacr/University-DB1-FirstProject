@@ -68,6 +68,7 @@ CREATE TABLE dbo.DB1P_PropertyOwners
 	Id int NOT NULL IDENTITY (1, 1),
 	Property_Id int NOT NULL,
 	Owner_Id int NOT NULL,
+	CONSTRAINT AK_PropertyOwnersIDs UNIQUE(Property_Id,Owner_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
@@ -78,6 +79,7 @@ CREATE TABLE dbo.DB1P_LegalOwners
 	ResponsibleName varchar(50) NOT NULL,
 	Resp_DocType_Id int NOT NULL,
 	Resp_DocValue int NOT NULL,
+	CONSTRAINT AK_Resp_DocValue UNIQUE(Resp_DocValue,Resp_DocType_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
@@ -88,7 +90,7 @@ CREATE TABLE dbo.DB1P_Owners
 	Name varchar(50) NOT NULL,
 	DocType_Id int NOT NULL,
 	DocValue int NOT NULL,
-	CONSTRAINT AK_DocValue UNIQUE(DocValue),
+	CONSTRAINT AK_DocValue UNIQUE(DocValue,DocType_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
