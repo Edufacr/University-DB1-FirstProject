@@ -15,36 +15,34 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Jorge Gutiérrez Cordero
--- Create date: 2020/5/30
--- Description:	Delete  an element from DB1P_Owners.
+-- Create date: 2020/6/1
+-- Description:	Query the owners of a property.
 -- =============================================
-CREATE PROCEDURE SP_deleteOwner
-	@pDocValue int, 
-	@pDocType_Id int
+CREATE PROCEDURE SP_getOwnersOfProperty
+	@pPropertyNumber int
 AS
 BEGIN
 
-	declare @Id int
+	declare @PropertyId int
 
 	begin try
+		
+		select @PropertyId = p.Id
+		from activeProperties as p
+		where p.PropertyNumber = @pPropertyNumber
 
-		select @Id = o.Id
-		from activeOwners as o
-		where DocValue = @pDocValue and DocType_Id = @pDocType_Id
+		select * 
+		from activePropertiesOwnersRelations as r
+		where r.PropertyId = @PropertyId
 
-		if @pDocType_Id = 4
-		update dbo.DB1P_LegalOwners
-		set Active = 0
-		where Id = @Id
-
-		update dbo.DB1P_Owners
-		set Active = 0
-		where Id = @Id
 		return 1
 
 	end try
+
 	begin catch
+		
 		return @@Error * -1
+
 	end catch
 END
 GO
