@@ -15,36 +15,38 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Jorge Gutiérrez Cordero
--- Create date: 2020/5/30
--- Description:	Delete  an element from DB1P_Owners.
+-- Create date: 2020/5/27
+-- Description:	Insert a Legal Owner to the table DB1P_LegalOwners
 -- =============================================
-CREATE PROCEDURE SP_deleteOwner
-	@pDocValue int, 
-	@pDocType_Id int
+CREATE PROCEDURE SP_insertLegalOwner
+	
+	@pName varchar(50), 
+	@pResp_DocType_Id int, 
+	@pResp_DocValue int, 
+	@pLegalOwner_DocValue int
+
 AS
 BEGIN
 
 	declare @Id int
 
 	begin try
-
+		
 		select @Id = o.Id
 		from activeOwners as o
-		where DocValue = @pDocValue and DocType_Id = @pDocType_Id
+		where o.DocValue = @pLegalOwner_DocValue and o.DocType_Id = 4
 
-		if @pDocType_Id = 4
-		update dbo.DB1P_LegalOwners
-		set Active = 0
-		where Id = @Id
-
-		update dbo.DB1P_Owners
-		set Active = 0
-		where Id = @Id
+		insert into dbo.DB1P_LegalOwners (Id, ResponsibleName, Resp_DocType_Id, Resp_DocValue, Active)
+		values (@Id, @pName, @pResp_DocType_Id, @pResp_DocValue, 1)
 		return 1
-
+	
 	end try
+
 	begin catch
+	
 		return @@Error * -1
+	
 	end catch
+		
 END
 GO

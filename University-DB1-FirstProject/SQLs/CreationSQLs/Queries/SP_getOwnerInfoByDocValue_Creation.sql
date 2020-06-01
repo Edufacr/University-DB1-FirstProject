@@ -14,11 +14,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
--- Create date: 2020/5/30
--- Description:	Delete  an element from DB1P_Owners.
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SP_deleteOwner
+CREATE PROCEDURE SP_getOwnerInfo
 	@pDocValue int, 
 	@pDocType_Id int
 AS
@@ -33,18 +33,27 @@ BEGIN
 		where DocValue = @pDocValue and DocType_Id = @pDocType_Id
 
 		if @pDocType_Id = 4
-		update dbo.DB1P_LegalOwners
-		set Active = 0
-		where Id = @Id
+			begin
+				select * 
+				from dbo.completeLegalOwners
+				where Id = @Id
+			end
+		else
+			begin
+				select *
+				from dbo.activeOwners
+				where Id = @Id
+			end
 
-		update dbo.DB1P_Owners
-		set Active = 0
-		where Id = @Id
 		return 1
 
 	end try
+
 	begin catch
+
 		return @@Error * -1
+
 	end catch
+
 END
 GO

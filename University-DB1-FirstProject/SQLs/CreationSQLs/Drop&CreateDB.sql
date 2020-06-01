@@ -49,7 +49,7 @@ CREATE TABLE dbo.DB1P_CC_onProperties
 	Property_Id int NOT NULL,
 	ChargeConcept_Id int NOT NULL,
 	BeginDate date NOT NULL,
-	EndDate date NOT NULL,
+	EndDate date  NULL,
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
