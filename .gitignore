@@ -4,3 +4,5 @@ obj/
 .idea/.idea.University-DB1-FirstProject/.idea/
 
 .idea/.idea.University-DB1-FirstProject/
+
+*.config
