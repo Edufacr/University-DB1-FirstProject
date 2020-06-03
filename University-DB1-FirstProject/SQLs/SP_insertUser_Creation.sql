@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 02/06/2020
--- Description:	Loads the initial users from a XML
+-- Create date: 03/06/2020
+-- Description:	Inserts a user
 -- =============================================
-CREATE PROCEDURE SP_
+CREATE PROCEDURE SP_insertUser_Creation
 	-- Add the parameters for the stored procedure here
-
+    @pUserName VARCHAR(50),@pPassword VARCHAR(50),@pAdminType bit
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,7 +18,9 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-		return SCOPE_IDENTITY();
+        INSERT INTO DB1P_Users (Username,Password, UserType,Active)
+        VALUES (@pUserName,@pPassword,@pAdminType,1);
+        return SCOPE_IDENTITY()
 	COMMIT
 END TRY
 BEGIN CATCH
