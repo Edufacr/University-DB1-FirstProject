@@ -5,7 +5,7 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 01/06/2020
--- Description:	Loads the initial users from a XML
+-- Description:	Loads the initial IdTypes from a XML
 -- =============================================
 CREATE PROCEDURE SP_XML_IdTypesFill
 	-- Add the parameters for the stored procedure here
@@ -18,15 +18,11 @@ BEGIN TRY
 	BEGIN TRANSACTION
 		DECLARE @docHandle int;
 		DECLARE @xmlDocument xml;
-		EXEC SP_XML_GetUsersXML @xmlDocument OUTPUT;
+		EXEC SP_XML_GetIdTypeXML @xmlDocument OUTPUT;
 		EXEC sp_xml_preparedocument @docHandle OUTPUT, @xmlDocument; 
-		INSERT INTO DB1P_Users (Username,Password, UserType,Active)
-		SELECT Username,Password,UserType = 1 ,Active = 1  
-		FROM OPENXML(@docHandle,'/Administrador/UsuarioAdmi') with (Username varchar(50) '@user',Password varchar(50) '@password',UserType varchar(20) '@tipo')
-		where UserType = 'administrador';
-		INSERT INTO DB1P_Users (Username,Password, UserType,Active)
-		SELECT Username,Password,UserType = 0 ,Active = 1  FROM OPENXML(@docHandle,'/Administrador/UsuarioAdmi') with (Username varchar(50) '@user',Password varchar(50) '@password',UserType varchar(20) '@tipo')
-		where UserType != 'administrador';
+		INSERT INTO DB1P_Doc_Id_Types(Id,Name)
+		SELECT *
+		FROM OPENXML(@docHandle,'/TipoDocIdentidad/TipoDocId') with (Id int '@codigoDoc', Name varchar(50) '@descripcion');
 		EXEC sp_xml_removedocument @docHandle; -- Remove the internal representation of the XML document.
 	COMMIT
 END TRY
