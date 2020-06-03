@@ -1,4 +1,4 @@
-﻿namespace University_DB1_FirstProject.Interfaces
+namespace University_DB1_FirstProject.Interfaces
 {
     public interface IConnectionStrings
     {
@@ -7,8 +7,8 @@
 
         public static string JORGECONNECTIONSTR =
             @"Data Source = LAPTOP-5URQT67L\SQLEXPRESS; Initial Catalog = DB1-FirstProject; Integrated Security = True";
+
         public static string EDUARDOCONNECTIONSTR = "";
     }
-
 
 }
