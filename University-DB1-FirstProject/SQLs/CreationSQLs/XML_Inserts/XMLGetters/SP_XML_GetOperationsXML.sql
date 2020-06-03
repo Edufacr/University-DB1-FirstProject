@@ -1,4 +1,18 @@
-<Operaciones_por_Dia>
+-- =============================================
+-- Author:		Eduardo Madrigal Marín
+-- Create date: 02/06/2020
+-- Description:	Gets Cc XML
+-- =============================================
+CREATE PROCEDURE SP_XML_GetCcXML
+	-- Add the parameters for the stored procedure here
+    @xmlDocument xml OUTPUT
+AS
+BEGIN
+    -- Insert statements for procedure here
+BEGIN TRY
+	BEGIN TRANSACTION
+        SELECT @xmlDocument = 
+        '<Operaciones_por_Dia>
 	<OperacionDia fecha="2020-01-30">
 		<Propiedad NumFinca="3206723" Valor="128964324.00" Direccion="Calle Vargas - Calle Kizarrá 300 m desde la entrada, casa color verde a la izquierda"/>
 		<Propiedad NumFinca="2201960" Valor="32453342.35" Direccion="Santa Rosa, 300 m Sur de la Terminal de Buses"/>
@@ -3766,4 +3780,12 @@
 		<ConceptoCobroVersusPropiedad idcobro="6" NumFinca="6852677"/>
 		<ConceptoCobroVersusPropiedad idcobro="6" NumFinca="8920893"/>
 	</OperacionDia>
-</Operaciones_por_Dia>
+</Operaciones_por_Dia>'
+	COMMIT
+END TRY
+BEGIN CATCH
+	ROLLBACK
+	return @@Error * -1
+END CATCH
+END
+GO
