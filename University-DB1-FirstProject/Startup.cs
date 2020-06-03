@@ -31,7 +31,6 @@ namespace University_DB1_FirstProject
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
-                
             });
         }
     }
