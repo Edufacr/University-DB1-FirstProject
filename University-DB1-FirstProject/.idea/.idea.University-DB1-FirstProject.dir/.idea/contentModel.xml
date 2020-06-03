@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\jguty\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\jguty\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\jguty\OneDrive\Documents\GitHub\University-DB1-FirstProject\University-DB1-FirstProject" t="IncludeRecursive">
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Controllers" t="Include">
+        <e p="OwnerRegisterController.cs" t="Include" />
+      </e>
+      <e p="Interfaces" t="Include">
+        <e p="IConnectionStrings.cs" t="Include" />
+      </e>
+      <e p="Models" t="Include">
+        <e p="OwnerRegisterModel.cs" t="Include" />
+        <e p="PropertyRegisterModel.cs" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="University-DB1-FirstProject.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="SQLs" t="Include">
+        <e p="AlterSQLs" t="Include">
+          <e p="Deletes" t="Include">
+            <e p="SP_deleteCC_onProperty_Alter.sql" t="Include" />
+            <e p="SP_deleteOwner_Alter.sql" t="Include" />
+            <e p="SP_deleteProperty_Alter.sql" t="Include" />
+            <e p="SP_deletePropertyOwner_Alter.sql" t="Include" />
+          </e>
+          <e p="ExecuteAllSQL-Eduardo.bat" t="Include" />
+          <e p="Inserts" t="Include">
+            <e p="SP_insertCC_onProperty_Alter.sql" t="Include" />
+            <e p="SP_insertLegalOwner_Alter.sql" t="Include" />
+            <e p="SP_insertOwner_Alter.sql" t="Include" />
+            <e p="SP_insertProperty_Alter.sql" t="Include" />
+            <e p="SP_insertPropertyOwner_Alter.sql" t="Include" />
+          </e>
+          <e p="Queries" t="Include">
+            <e p="SP_getActiveCC_onProperties_Alter.sql" t="Include" />
+            <e p="SP_getActiveCCs_ofProperty_Alter.sql" t="Include" />
+            <e p="SP_getActiveLegalOwners_Alter.sql" t="Include" />
+            <e p="SP_getActiveOwners_Alter.sql" t="Include" />
+            <e p="SP_getActiveProperties_Alter.sql" t="Include" />
+            <e p="SP_getActivePropertyOwners_Alter.sql" t="Include" />
+            <e p="SP_getOwnerInfoByDocValue_Alter.sql" t="Include" />
+            <e p="SP_getOwnerInfoByName_Alter.sql" t="Include" />
+            <e p="SP_getOwnersOfProperty_Alter.sql" t="Include" />
+            <e p="SP_getPropertiesOfOwner_Alter.sql" t="Include" />
+            <e p="SP_getPropertyInfoByAddress_Alter.sql" t="Include" />
+            <e p="SP_getPropertyInfoByName_Alter.sql" t="Include" />
+            <e p="SP_getPropertyInfoByPropertyNumber_Alter.sql" t="Include" />
+          </e>
+          <e p="Updates" t="Include">
+            <e p="SP_updateCC_onProperty_Alter.sql" t="Include" />
+            <e p="SP_updateLegalOwner_Alter.sql" t="Include" />
+            <e p="SP_updateOwner_Alter.sql" t="Include" />
+            <e p="SP_updateProperty_Alter.sql" t="Include" />
+            <e p="SP_updatePropertyOwner_Alter.sql" t="Include" />
+          </e>
+        </e>
+        <e p="CreationSQLs" t="Include">
+          <e p="Deletes" t="Include">
+            <e p="SP_deleteCC_onProperty_Creation.sql" t="Include" />
+            <e p="SP_deleteOwner_Creation.sql" t="Include" />
+            <e p="SP_deleteProperty_Creation.sql" t="Include" />
+            <e p="SP_deletePropertyOwner_Creation.sql" t="Include" />
+          </e>
+          <e p="Drop&amp;CreateDB.sql" t="Include" />
+          <e p="ExecuteAllSQL-Eduardo.bat" t="Include" />
+          <e p="Inserts" t="Include">
+            <e p="SP_insertCC_onProperty_Creation.sql" t="Include" />
+            <e p="SP_insertLegalOwner_Creation.sql" t="Include" />
+            <e p="SP_insertOwner_Creation.sql" t="Include" />
+            <e p="SP_insertProperty_Creation.sql" t="Include" />
+            <e p="SP_insertPropertyOwner_Creation.sql" t="Include" />
+          </e>
+          <e p="Queries" t="Include">
+            <e p="SP_getActiveCC_onProperties_Creation.sql" t="Include" />
+            <e p="SP_getActiveCCs_ofProperty_Creation.sql" t="Include" />
+            <e p="SP_getActiveLegalOwners_Creation.sql" t="Include" />
+            <e p="SP_getActiveOwners_Creation.sql" t="Include" />
+            <e p="SP_getActiveProperties_Creation.sql" t="Include" />
+            <e p="SP_getActivePropertyOwners_Creation.sql" t="Include" />
+            <e p="SP_getOwnerInfo_Creation.sql" t="Include" />
+            <e p="SP_getOwnerInfoByDocValue_Creation.sql" t="Include" />
+            <e p="SP_getOwnerInfoByName_Creation.sql" t="Include" />
+            <e p="SP_getOwnersOfProperty_Creation.sql" t="Include" />
+            <e p="SP_getPropertiesOfOwner_Creation.sql" t="Include" />
+            <e p="SP_getPropertyInfoByAddress_Creation.sql" t="Include" />
+            <e p="SP_getPropertyInfoByName_Creation.sql" t="Include" />
+            <e p="SP_getPropertyInfoByPropertyNumber_Creation.sql" t="Include" />
+          </e>
+          <e p="Updates" t="Include">
+            <e p="SP_updateCC_onProperty_Creation.sql" t="Include" />
+            <e p="SP_updateLegalOwner_Creation.sql" t="Include" />
+            <e p="SP_updateOwner_Creation.sql" t="Include" />
+            <e p="SP_updateProperty_Creation.sql" t="Include" />
+            <e p="SP_updatePropertyOwner_Creation.sql" t="Include" />
+          </e>
+          <e p="Views" t="Include">
+            <e p="ActiveViews_Creation.sql" t="Include" />
+            <e p="completeCC_onProperties_Creation.sql" t="Include" />
+            <e p="completeLegalOwners_Creation.sql" t="Include" />
+            <e p="propertiesOwnersRelations_Creation.sql" t="Include" />
+            <e p="propertiesUsersRelations_Creation.sql" t="Include" />
+          </e>
+        </e>
+        <e p="ExecuteAllSQL-Jorge.bat" t="Include" />
+        <e p="StoredProcedures" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="University-DB1-FirstProject.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>

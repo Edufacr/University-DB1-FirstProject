@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using University_DB1_FirstProject.Controllers;
+using University_DB1_FirstProject.Models;
 
 namespace University_DB1_FirstProject
 {
@@ -13,7 +15,18 @@ namespace University_DB1_FirstProject
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            
+            //CreateHostBuilder(args).Build().Run();
+            
+            OwnerRegisterModel owner = new OwnerRegisterModel();
+
+            owner.Name = "Jorge Gutiérrez";
+            owner.DocValue = 118090772;
+            owner.DocTypeId = 1;
+            
+            OwnerRegisterController controller = new OwnerRegisterController();
+            
+            controller.executeInsertOwner(owner);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
