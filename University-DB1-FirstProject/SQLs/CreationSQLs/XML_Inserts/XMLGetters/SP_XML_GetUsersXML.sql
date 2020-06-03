@@ -5,7 +5,7 @@
 -- =============================================
 CREATE PROCEDURE SP_XML_GetUsersXML
 	-- Add the parameters for the stored procedure here
-    @xmlDocument OUTPUT
+    @xmlDocument xml OUTPUT
 AS
 BEGIN
     -- Insert statements for procedure here

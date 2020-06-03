@@ -1,11 +1,11 @@
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 02/06/2020
--- Description:	Gets Users XML
+-- Description:	Gets Cc XML
 -- =============================================
 CREATE PROCEDURE SP_XML_GetCcXML
 	-- Add the parameters for the stored procedure here
-    @xmlDocument OUTPUT
+    @xmlDocument xml OUTPUT
 AS
 BEGIN
     -- Insert statements for procedure here
