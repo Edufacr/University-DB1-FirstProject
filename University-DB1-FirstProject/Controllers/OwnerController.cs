@@ -13,7 +13,11 @@ namespace University_DB1_FirstProject.Controllers
         public string connectionString;
         private SqlConnection connection;
         private SqlCommand InsertOwner;
-         
+        private SqlCommand InsertLegalOwner;
+        private SqlCommand DeleteOwner;
+        private SqlCommand DeleteLegalOwner;
+        
+
         public OwnerController()
         {
             connectionString = IConnectionStrings.CONNECTIONSTRING;
@@ -23,7 +27,7 @@ namespace University_DB1_FirstProject.Controllers
             InsertOwner.CommandType = CommandType.StoredProcedure;
         }
 
-        public void executeInsertOwner(OwnerModel ownerInstance)
+        public void executeInsertOwner(OwnerRegisterModel ownerInstance)
         {
             InsertOwner.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = ownerInstance.Name;
             InsertOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = ownerInstance.DocValue;
@@ -39,9 +43,9 @@ namespace University_DB1_FirstProject.Controllers
             {
                 throw (e);
             }
-             
-             
         }
+        
+        
          
          
     }

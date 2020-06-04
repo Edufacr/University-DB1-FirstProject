@@ -16,11 +16,12 @@ namespace University_DB1_FirstProject
         public static void Main(string[] args)
         {
             
-            OwnerModel owner = new OwnerModel();
+            OwnerRegisterModel owner = new OwnerRegisterModel();
             owner.Name = "Jorge Gutierrez";
             owner.DocValue = 118090772;
             owner.DocTypeId = 1;
             OwnerController controller = new OwnerController();
+            
             controller.executeInsertOwner(owner);
             
             //CreateHostBuilder(args).Build().Run();
