@@ -8,25 +8,34 @@ using University_DB1_FirstProject.Models;
 
 namespace University_DB1_FirstProject.Controllers
 {
-    public class OwnerRegisterController
+    public class OwnerController
     {
         public string connectionString;
         private SqlConnection connection;
+        
         private SqlCommand InsertOwner;
-         
-        public OwnerRegisterController()
+        private SqlCommand DeleteOwner;
+        private SqlCommand UpdateOwner;
+
+        private SqlCommand GetOwnerProperties;
+        private SqlCommand GetActiveOwners;
+        private SqlCommand GetOwnersByName;
+        private SqlCommand GetOwnersByDocValue;
+        
+        public OwnerController()
         {
             connectionString = IConnectionStrings.CONNECTIONSTRING;
-            connection = new SqlConnection(connectionString);
+            connection = new SqlConnection();
+            connection.ConnectionString = connectionString;
             InsertOwner = new SqlCommand("SP_insertOwner", connection);
             InsertOwner.CommandType = CommandType.StoredProcedure;
         }
 
         public void executeInsertOwner(OwnerRegisterModel ownerInstance)
         {
-            InsertOwner.Parameters.Add("@pName", System.Data.SqlDbType.VarChar, 50).Value = ownerInstance.Name;
-            InsertOwner.Parameters.Add("@pDocValue", System.Data.SqlDbType.Int).Value = ownerInstance.DocValue;
-            InsertOwner.Parameters.Add("@pDocType_Id", System.Data.SqlDbType.Int).Value = ownerInstance.DocTypeId;
+            InsertOwner.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = ownerInstance.Name;
+            InsertOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = ownerInstance.DocValue;
+            InsertOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = ownerInstance.DocTypeId;
 
             try
             {
@@ -38,9 +47,9 @@ namespace University_DB1_FirstProject.Controllers
             {
                 throw (e);
             }
-             
-             
         }
+        
+        
          
          
     }

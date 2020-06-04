@@ -2,16 +2,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace University_DB1_FirstProject.Models
 {
-    public class OwnerRegisterModel
+    public class PropertyRegisterModel
     {
         [Required]
         public string Name { get; set; }
         
         [Required]
-        public int DocTypeId { get; set; }
+        public string Address { get; set; }
         
         [Required]
-        public int DocValue { get; set; }
-
+        public float Value { get; set; }
+        
+        [Required]
+        public int PropertyNumber { get; set; }
+        
     }
 }
