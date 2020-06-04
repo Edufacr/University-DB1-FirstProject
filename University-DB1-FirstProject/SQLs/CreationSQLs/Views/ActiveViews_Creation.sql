@@ -6,20 +6,27 @@ create view activeProperties as
 go
 
 create view activeOwners as
-	select o.Id as Id, o.Name as Name, o.DocValue as DocValue, o.DocType_Id as DocType_Id
+	select o.Id as Id, o.Name as Name, o.DocValue as DocValue, o.DocType_Id as DocType_Id,
+		   d.Name as DocType
 	from dbo.DB1P_Owners as o
+			inner join dbo.DB1P_Doc_Id_Types as d
+			on o.DocType_Id = d.Id
 	where Active = 1
 go
 
 create view activeLegalOwners as
-	select lo.Id as Id, lo.ResponsibleName as ResponsibleName, lo.Resp_DocValue as RespDocValue, lo.Resp_DocType_Id as Resp_DocType_Id
+	select lo.Id as Id, lo.ResponsibleName as ResponsibleName, lo.Resp_DocValue as RespDocValue, lo.Resp_DocType_Id as Resp_DocType_Id,
+		   d.Name as RespDocType
 	from dbo.DB1P_LegalOwners lo
+		inner join dbo.DB1P_Doc_Id_Types as d
+				on lo.Resp_DocType_Id = d.Id
 	where Active = 1
 go
 
 create view activePropertyOwners as
 	select po.Id as RelationId, po.Owner_Id as OwnerId, po.Property_Id as PropertyId
 	from dbo.DB1P_PropertyOwners as po
+	
 	where Active = 1
 go
 
