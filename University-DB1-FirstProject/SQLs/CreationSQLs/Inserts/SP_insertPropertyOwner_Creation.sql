@@ -19,12 +19,27 @@ GO
 -- Create date: 2020/5/28
 -- Description:	Insert a property owner to DB1P_PropertyOwners
 -- =============================================
-create procedure dbo.SP_insertPropertyOwner @pProperty_Id int, @pOwner_Id int
+create procedure dbo.SP_insertPropertyOwner 	
+	
+	@pPropertyNumber int, 
+	@pOwnerDocValue int
 as
 begin
+
+	declare @Property_Id int;
+	declare @Owner_Id int;
+
+	select @Owner_Id = o.Id
+	from dbo.activeOwners as o
+	where @pOwnerDocValue = o.DocValue
+
+	select @Property_Id = p.Id
+	from dbo.activeProperties as p
+	where @pPropertyNumber = p.PropertyNumber
+
 	begin try
 		insert into dbo.DB1P_PropertyOwners (Property_Id, Owner_Id, Active)
-		values (@pProperty_Id, @pOwner_Id, 1);
+		values (@Property_Id, @Owner_Id, 1);
 		return 1
 	end try
 	begin catch
