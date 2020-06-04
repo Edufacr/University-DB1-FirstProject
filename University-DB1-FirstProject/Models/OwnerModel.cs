@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace University_DB1_FirstProject.Models
 {
-    public class OwnerRegisterModel
+    public class OwnerModel
     {
         [Required]
         [Display( Name = "Nombre")]
