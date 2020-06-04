@@ -1,17 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 
+
 namespace University_DB1_FirstProject.Models
 {
-    public class OwnerRegisterModel
+    public class UserDisplayModel
     {
         [Required]
+        [Display( Name = "Usuario")]
         public string Name { get; set; }
-        
+         
         [Required]
-        public int DocTypeId { get; set; }
-        
-        [Required]
-        public int DocValue { get; set; }
-
+        [Display(Name = "Password")]
+        public string Password { get; set; }
     }
 }
