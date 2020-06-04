@@ -20,7 +20,7 @@ BEGIN TRY
 	BEGIN TRANSACTION
         UPDATE DB1P_Users
         set
-        U.Active = 0
+        Active = 0
 		where Username = @pUsername; 
 		return SCOPE_IDENTITY();
 	COMMIT
