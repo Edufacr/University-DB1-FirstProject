@@ -17,7 +17,8 @@ namespace University_DB1_FirstProject.Controllers
         public OwnerRegisterController()
         {
             connectionString = IConnectionStrings.CONNECTIONSTRING;
-            connection = new SqlConnection(connectionString);
+            connection = new SqlConnection();
+            connection.ConnectionString = connectionString;
             InsertOwner = new SqlCommand("SP_insertOwner", connection);
             InsertOwner.CommandType = CommandType.StoredProcedure;
         }
