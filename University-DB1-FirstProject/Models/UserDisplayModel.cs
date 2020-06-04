@@ -8,7 +8,7 @@ namespace University_DB1_FirstProject.Models
         [Required]
         [Display( Name = "Usuario")]
         public string Name { get; set; }
-        
+         
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }

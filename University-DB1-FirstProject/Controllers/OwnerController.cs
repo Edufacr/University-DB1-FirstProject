@@ -12,12 +12,16 @@ namespace University_DB1_FirstProject.Controllers
     {
         public string connectionString;
         private SqlConnection connection;
-        private SqlCommand InsertOwner;
-        private SqlCommand InsertLegalOwner;
-        private SqlCommand DeleteOwner;
-        private SqlCommand DeleteLegalOwner;
         
+        private SqlCommand InsertOwner;
+        private SqlCommand DeleteOwner;
+        private SqlCommand UpdateOwner;
 
+        private SqlCommand GetOwnerProperties;
+        private SqlCommand GetActiveOwners;
+        private SqlCommand GetOwnersByName;
+        private SqlCommand GetOwnersByDocValue;
+        
         public OwnerController()
         {
             connectionString = IConnectionStrings.CONNECTIONSTRING;
