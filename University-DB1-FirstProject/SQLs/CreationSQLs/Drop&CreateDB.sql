@@ -29,6 +29,7 @@ CREATE TABLE dbo.DB1P_MoratoryInterest_CC
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_Consumption_CC;
+DROP TABLE IF EXISTS dbo.DB1P_Comsumption_CC;
 CREATE TABLE dbo.DB1P_Consumption_CC
 	(
 	Id int NOT NULL,
