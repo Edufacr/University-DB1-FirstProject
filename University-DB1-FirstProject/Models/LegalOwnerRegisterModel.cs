@@ -5,9 +5,6 @@ namespace University_DB1_FirstProject.Models
     public class LegalOwnerRegisterModel
     {
         [Required]
-        public string Name { get; set; }
-        
-        [Required]
         public int DocValue { get; set; }
         
         [Required]
