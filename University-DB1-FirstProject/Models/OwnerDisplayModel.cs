@@ -10,11 +10,11 @@ namespace University_DB1_FirstProject.Models
         
         [Required]
         [Display(Name = "Tipo Documento")]
-        public int DocTypeId { get; set; }
+        public string DocType { get; set; }
         
         [Required]
         [Display(Name = "ID")]
-        public string DocValue { get; set; }
+        public int DocValue { get; set; }
 
     }
 }
