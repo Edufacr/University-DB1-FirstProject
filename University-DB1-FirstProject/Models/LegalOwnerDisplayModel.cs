@@ -22,7 +22,7 @@ namespace University_DB1_FirstProject.Models
         
         [Required]
         [Display(Name = "Tipo ID Responsable")]
-        public string RespDocTypeId { get; set; }
+        public string RespDocType { get; set; }
 
     }
 }
