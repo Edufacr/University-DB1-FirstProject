@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS dbo.DB1P_Percentage_CC;
 CREATE TABLE dbo.DB1P_Percentage_CC
 	(
 	Id int NOT NULL,
-	PercentageValue int NOT NULL
+	PercentageValue REAL NOT NULL
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_MoratoryInterest_CC;
@@ -39,7 +39,7 @@ CREATE TABLE dbo.DB1P_Consumption_CC
 DROP TABLE IF EXISTS dbo.DB1P_Fixed_CC;
 CREATE TABLE dbo.DB1P_Fixed_CC
 	(
-	Id int NOT NULL IDENTITY (1, 1),
+	Id int NOT NULL,
 	Amount money NOT NULL
 	)  ON [PRIMARY]
 
@@ -98,7 +98,7 @@ CREATE TABLE dbo.DB1P_Owners
 DROP TABLE IF EXISTS dbo.DB1P_ChargeConcepts;
 CREATE TABLE dbo.DB1P_ChargeConcepts
 	(
-	Id int NOT NULL IDENTITY (1, 1),
+	Id int NOT NULL,
 	Name varchar(50) NOT NULL,
 	MoratoryInterestRate real NOT NULL,
 	ReciptEmisionDay tinyint NOT NULL,
