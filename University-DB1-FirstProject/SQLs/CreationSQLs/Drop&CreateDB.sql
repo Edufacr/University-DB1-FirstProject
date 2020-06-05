@@ -60,6 +60,7 @@ CREATE TABLE dbo.DB1P_PropertiesUsers
 	Id int NOT NULL IDENTITY (1, 1),
 	Property_Id int NOT NULL,
 	User_Id int NOT NULL,
+	CONSTRAINT AK_PropertyUsersIDs UNIQUE(Property_Id,User_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
