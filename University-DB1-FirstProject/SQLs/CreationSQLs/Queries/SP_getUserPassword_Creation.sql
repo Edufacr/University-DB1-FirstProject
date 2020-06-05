@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 04/06/2020
--- Description:	get the percentage of a PercentageCC
+-- Create date: 06/06/2020
+-- Description:	get password of specify user
 -- =============================================
-CREATE PROCEDURE SP_getPercentageCCPercent
+CREATE PROCEDURE SP_getUserPassword
 	-- Add the parameters for the stored procedure here
-    @pId int
+    @pUsername VARCHAR(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -17,10 +17,8 @@ BEGIN
 	SET NOCOUNT ON;
     -- Insert statements for procedure here
 BEGIN TRY
-	BEGIN TRANSACTION
-        SELECT Percentage from DB1P_Percentage_CC where Id = @pId;
+        SELECT Password from DB1P_Users where Username = @pUsername;
 		return SCOPE_IDENTITY();
-	COMMIT
 END TRY
 BEGIN CATCH
 	ROLLBACK

@@ -5,10 +5,11 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 04/06/2020
--- Description:	gets all CC
+-- Description:	Gets all properties seen by a user
 -- =============================================
-CREATE PROCEDURE SP_getCC
+CREATE PROCEDURE SP_getUsersProperties
 	-- Add the parameters for the stored procedure here
+    @pUsername VARCHAR(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -16,10 +17,13 @@ BEGIN
 	SET NOCOUNT ON;
     -- Insert statements for procedure here
 BEGIN TRY
+	DECLARE @UserId int;
 	BEGIN TRANSACTION
-        SELECT * FROM DB1P_ChargeConcepts;
-		return SCOPE_IDENTITY();
+		SET @UserId = (Select Id from activeUsers where Username = @pUsername)
+        SELECT PropertyName,PropertyAddress,PropertyNumber,PropertyValue from activePropertiesUsersRelations
+        where UserId = @UserId;
 	COMMIT
+	return @@ROWCOUNT;
 END TRY
 BEGIN CATCH
 	ROLLBACK

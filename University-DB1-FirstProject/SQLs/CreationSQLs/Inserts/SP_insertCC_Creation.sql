@@ -5,11 +5,11 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 03/06/2020
--- Description:	validates is password and username entered match (returns 1 if true)
+-- Description:	Inserts into ChargeConcepts
 -- =============================================
-CREATE PROCEDURE SP_validateUserPsswrd
+CREATE PROCEDURE SP_insertCC_Creation
 	-- Add the parameters for the stored procedure here
-    @Username VARCHAR(50),@Password VARCHAR(50)
+    @pId int, @pName VARCHAR(50),@pMoratoryInterestRate REAL, @pReciptEmisionDay TINYINT,@pExpirationDays TINYINT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,18 +18,10 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-		DECLARE @passwordPointer VARCHAR(50);
-		SELECT @passwordPointer from DB1P_Users where @Username = Username 
-		IF @passwordPointer = @Password 
-			BEGIN
-				RETURN 1
-			END
-		ELSE
-			BEGIN
-				RETURN -5000 --Error: Contrasena no coincide
-			END
-		return SCOPE_IDENTITY();
+        INSERT INTO DB1P_ChargeConcepts (Id,Name, MoratoryInterestRate,ReciptEmisionDay,ExpirationDays)
+        VALUES (@pId,@pName,@pMoratoryInterestRate,@pReciptEmisionDay,@pExpirationDays);
 	COMMIT
+	return SCOPE_IDENTITY()
 END TRY
 BEGIN CATCH
 	ROLLBACK

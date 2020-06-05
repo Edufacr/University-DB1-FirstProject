@@ -5,11 +5,11 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 03/06/2020
--- Description:	insert in FixedCC
+-- Description:	insert in PercentageCC
 -- =============================================
-CREATE PROCEDURE SP_insertFixedCC
+CREATE PROCEDURE SP_insertPercentageCC
 	-- Add the parameters for the stored procedure here
-    @pId int,@pAmount money
+    @pId int, @pPercentage REAL
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,10 +18,10 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-		INSERT INTO DB1P_Fixed_CC (Id,Amount)
-        VALUES (@pId,@pAmount);
-        return SCOPE_IDENTITY()
+		INSERT INTO DB1P_Percentage_CC (Id, PercentageValue)
+        VALUES (@pId,@pPercentage);
 	COMMIT
+	return SCOPE_IDENTITY()
 END TRY
 BEGIN CATCH
 	ROLLBACK

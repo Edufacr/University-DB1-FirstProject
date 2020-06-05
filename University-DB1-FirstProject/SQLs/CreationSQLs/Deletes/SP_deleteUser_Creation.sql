@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 03/06/2020
--- Description:	Gets all active Users
+-- Create date: 02/06/2020
+-- Description:	logical delete to a username
 -- =============================================
-CREATE PROCEDURE SP_getActiveUsers
+CREATE PROCEDURE SP_deleteUser
 	-- Add the parameters for the stored procedure here
-
+    @pUsername varchar(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,9 +18,12 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-        Select Username, UserType from ActiveUsers;
-		return @@ROWCOUNT;
+        UPDATE DB1P_Users
+        set
+        Active = 0
+		where Username = @pUsername; 
 	COMMIT
+	return SCOPE_IDENTITY();
 END TRY
 BEGIN CATCH
 	ROLLBACK

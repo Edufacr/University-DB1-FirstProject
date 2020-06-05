@@ -5,11 +5,10 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 04/06/2020
--- Description:	Gets all users that can acces a property
+-- Description:	gets all CC
 -- =============================================
-CREATE PROCEDURE SP_getPropertyUsers
+CREATE PROCEDURE SP_getCC
 	-- Add the parameters for the stored procedure here
-    @pPropertyNumber int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -17,13 +16,10 @@ BEGIN
 	SET NOCOUNT ON;
     -- Insert statements for procedure here
 BEGIN TRY
-	BEGIN TRANSACTION
-        SELECT  Username from activePropertiesUsersRelations where PropertyNumber = @pPropertyNumber;
-		return @@ROWCOUNT;
-	COMMIT
+    SELECT * FROM DB1P_ChargeConcepts;
+	return SCOPE_IDENTITY();
 END TRY
 BEGIN CATCH
-	ROLLBACK
 	return @@Error * -1
 END CATCH
 END

@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 02/06/2020
--- Description:	logical delete to a username
+-- Create date: 04/06/2020
+-- Description:	inserts a relation between Properties and Users
 -- =============================================
-CREATE PROCEDURE SP_deleteUser_Creation
+CREATE PROCEDURE SP_insertPropertiesUsers
 	-- Add the parameters for the stored procedure here
-    @pUsername varchar(50)
+    @pPropertyNumber int,@pUsername VARCHAR(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -17,13 +17,15 @@ BEGIN
 	SET NOCOUNT ON;
     -- Insert statements for procedure here
 BEGIN TRY
+	DECLARE @PropertyId int;
+	DECLARE @UserId int;
 	BEGIN TRANSACTION
-        UPDATE DB1P_Users
-        set
-        Active = 0
-		where Username = @pUsername; 
-		return SCOPE_IDENTITY();
+		SET @PropertyId = (Select Id from activeProperties where PropertyNumber = @pPropertyNumber)
+		SET @UserId = (Select Id from activeUsers where Username = @pUsername)
+        INSERT INTO DB1P_PropertiesUsers
+        VALUES(@PropertyId,@UserId,1);
 	COMMIT
+	RETURN SCOPE_IDENTITY();
 END TRY
 BEGIN CATCH
 	ROLLBACK

@@ -9,7 +9,7 @@ GO
 -- =============================================
 CREATE PROCEDURE SP_deletePropertiesUsers
 	-- Add the parameters for the stored procedure here
-    @pPropertyId int, @pUserId int
+    @pPropertyNumber int, @pUsername varchar(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -17,13 +17,17 @@ BEGIN
 	SET NOCOUNT ON;
     -- Insert statements for procedure here
 BEGIN TRY
+	DECLARE @PropertyId int;
+	DECLARE @UserId int;
 	BEGIN TRANSACTION
+		SET @PropertyId = (Select Id from activeProperties where PropertyNumber = @pPropertyNumber)
+		SET @UserId = (Select Id from activeUsers where Username = @pUsername)
         UPDATE DB1P_PropertiesUsers
         set
         Active = 0
-		where User_Id = @pUserId and Property_Id = @pUserId; 
-		return SCOPE_IDENTITY();
+		where User_Id = @UserId and Property_Id = @PropertyId; 
 	COMMIT
+	return SCOPE_IDENTITY();
 END TRY
 BEGIN CATCH
 	ROLLBACK

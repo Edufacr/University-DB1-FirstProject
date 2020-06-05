@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 04/06/2020
--- Description:	get the M3 of a ConsumptionCC
+-- Create date: 02/06/2020
+-- Description:	updates User values with username
 -- =============================================
-CREATE PROCEDURE SP_getConsumptionM3
+CREATE PROCEDURE SP_updateUser
 	-- Add the parameters for the stored procedure here
-    @pId int
+	@pUsername varchar(50),@pNewUserName varchar(50),@pNewPassword varchar(50),@pNewUserType bit
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,9 +18,15 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-        SELECT ConsumptionM3 from DB1P_Consumption_CC where Id = @pId;
-		return SCOPE_IDENTITY();
+        UPDATE DB1P_Users
+        set
+        Username = @pNewUserName,
+		Password = @pNewPassword,
+		UserType = @pNewUserType
+		from DB1P_Users
+		where Username = @pUsername;
 	COMMIT
+	return SCOPE_IDENTITY();
 END TRY
 BEGIN CATCH
 	ROLLBACK

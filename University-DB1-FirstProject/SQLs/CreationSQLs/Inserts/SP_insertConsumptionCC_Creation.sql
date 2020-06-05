@@ -5,11 +5,11 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 03/06/2020
--- Description:	Inserts into ChargeConcepts
+-- Description:	insert in ConsumptionCC
 -- =============================================
-CREATE PROCEDURE SP_insertCC_Creation
+CREATE PROCEDURE SP_insertConsumptionCC
 	-- Add the parameters for the stored procedure here
-    @pId int, @pName VARCHAR(50),@pMoratoryInterestRate REAL, @pReciptEmisionDay TINYINT,@pExpirationDays TINYINT
+    @pId int, @pConsumptionM3 int --preguntar si hay que cambiarlo a money
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,10 +18,10 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-        INSERT INTO DB1P_ChargeConcepts (Id,Name, MoratoryInterestRate,ReciptEmisionDay,ExpirationDays)
-        VALUES (@pId,@pName,@pMoratoryInterestRate,@pReciptEmisionDay,@pExpirationDays);
-        return SCOPE_IDENTITY()
+		INSERT INTO DB1P_Consumption_CC (Id, ConsumptionM3)
+        VALUES (@pId,@pConsumptionM3);
 	COMMIT
+	return SCOPE_IDENTITY()
 END TRY
 BEGIN CATCH
 	ROLLBACK

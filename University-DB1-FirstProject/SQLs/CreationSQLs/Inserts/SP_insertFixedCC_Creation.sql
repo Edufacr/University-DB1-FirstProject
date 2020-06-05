@@ -5,11 +5,11 @@ GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
 -- Create date: 03/06/2020
--- Description:	insert in ConsumptionCC
+-- Description:	insert in FixedCC
 -- =============================================
-CREATE PROCEDURE SP_insertConsumptionCC
+CREATE PROCEDURE SP_insertFixedCC
 	-- Add the parameters for the stored procedure here
-    @pId int, @pConsumptionM3 int --preguntar si hay que cambiarlo a money
+    @pId int,@pAmount money
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,10 +18,10 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-		INSERT INTO DB1P_Consumption_CC (Id, ConsumptionM3)
-        VALUES (@pId,@pConsumptionM3);
-        return SCOPE_IDENTITY()
+		INSERT INTO DB1P_Fixed_CC (Id,Amount)
+        VALUES (@pId,@pAmount);
 	COMMIT
+	return SCOPE_IDENTITY()
 END TRY
 BEGIN CATCH
 	ROLLBACK
