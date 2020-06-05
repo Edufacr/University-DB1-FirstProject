@@ -24,6 +24,7 @@ BEGIN TRY
 		SELECT *
 		FROM OPENXML(@docHandle,'/TipoDocIdentidad/TipoDocId') with (Id int '@codigoDoc', Name varchar(50) '@descripcion');
 		EXEC sp_xml_removedocument @docHandle; -- Remove the internal representation of the XML document.
+		RETURN SCOPE_IDENTITY();
 	COMMIT
 END TRY
 BEGIN CATCH
