@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS dbo.DB1P_Percentage_CC;
 CREATE TABLE dbo.DB1P_Percentage_CC
 	(
 	Id int NOT NULL,
-	PercentageValue int NOT NULL
+	PercentageValue REAL NOT NULL
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_MoratoryInterest_CC;
@@ -28,17 +28,18 @@ CREATE TABLE dbo.DB1P_MoratoryInterest_CC
 	Amount money NOT NULL
 	)  ON [PRIMARY]
 
+DROP TABLE IF EXISTS dbo.DB1P_Consumption_CC;
 DROP TABLE IF EXISTS dbo.DB1P_Comsumption_CC;
-CREATE TABLE dbo.DB1P_Comsumption_CC
+CREATE TABLE dbo.DB1P_Consumption_CC
 	(
 	Id int NOT NULL,
-	ConsumptionM3 int NOT NULL
+	ConsumptionM3 MONEY NOT NULL
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_Fixed_CC;
 CREATE TABLE dbo.DB1P_Fixed_CC
 	(
-	Id int NOT NULL IDENTITY (1, 1),
+	Id int NOT NULL,
 	Amount money NOT NULL
 	)  ON [PRIMARY]
 
@@ -59,6 +60,7 @@ CREATE TABLE dbo.DB1P_PropertiesUsers
 	Id int NOT NULL IDENTITY (1, 1),
 	Property_Id int NOT NULL,
 	User_Id int NOT NULL,
+	CONSTRAINT AK_PropertyUsersIDs UNIQUE(Property_Id,User_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
 
@@ -97,11 +99,11 @@ CREATE TABLE dbo.DB1P_Owners
 DROP TABLE IF EXISTS dbo.DB1P_ChargeConcepts;
 CREATE TABLE dbo.DB1P_ChargeConcepts
 	(
-	Id int NOT NULL IDENTITY (1, 1),
+	Id int NOT NULL,
 	Name varchar(50) NOT NULL,
 	MoratoryInterestRate real NOT NULL,
 	ReciptEmisionDay tinyint NOT NULL,
-	ExpirationDays tinyint NOT NULL
+	ExpirationDays tinyint NOT NULL,
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_Users;
@@ -336,14 +338,14 @@ ALTER TABLE dbo.DB1P_MoratoryInterest_CC ADD CONSTRAINT
 	
 ALTER TABLE dbo.DB1P_MoratoryInterest_CC SET (LOCK_ESCALATION = TABLE)
 
-ALTER TABLE dbo.DB1P_Comsumption_CC ADD CONSTRAINT
-	PK_DB1P_Comsumption_CC PRIMARY KEY CLUSTERED 
+ALTER TABLE dbo.DB1P_Consumption_CC ADD CONSTRAINT
+	PK_DB1P_Consumption_CC PRIMARY KEY CLUSTERED 
 	(
 	Id
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-ALTER TABLE dbo.DB1P_Comsumption_CC ADD CONSTRAINT
-	FK_DB1P_Comsumption_CC_DB1P_ChargeConcepts FOREIGN KEY
+ALTER TABLE dbo.DB1P_Consumption_CC ADD CONSTRAINT
+	FK_DB1P_Consumption_CC_DB1P_ChargeConcepts FOREIGN KEY
 	(
 	Id
 	) REFERENCES dbo.DB1P_ChargeConcepts
@@ -352,7 +354,7 @@ ALTER TABLE dbo.DB1P_Comsumption_CC ADD CONSTRAINT
 	) ON UPDATE  NO ACTION 
 	 ON DELETE  NO ACTION 
 	
-ALTER TABLE dbo.DB1P_Comsumption_CC SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE dbo.DB1P_Consumption_CC SET (LOCK_ESCALATION = TABLE)
 
 ALTER TABLE dbo.DB1P_Fixed_CC ADD CONSTRAINT
 	PK_DB1P_Fixed_CC PRIMARY KEY CLUSTERED 

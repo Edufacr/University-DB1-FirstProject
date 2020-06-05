@@ -4,12 +4,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Eduardo Madrigal Marín
--- Create date: 02/06/2020
--- Description:	logical delete to a username
+-- Create date: 03/06/2020
+-- Description:	insert in ConsumptionCC
 -- =============================================
-CREATE PROCEDURE SP_deleteUser_Creation
+CREATE PROCEDURE SP_insertConsumptionCC
 	-- Add the parameters for the stored procedure here
-    @pUsername varchar(50)
+    @pId int, @pConsumptionM3 int --preguntar si hay que cambiarlo a money
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,12 +18,10 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-        UPDATE DB1P_Users
-        set
-        U.Active = 0
-		where Username = @pUsername; 
-		return SCOPE_IDENTITY();
+		INSERT INTO DB1P_Consumption_CC (Id, ConsumptionM3)
+        VALUES (@pId,@pConsumptionM3);
 	COMMIT
+	return SCOPE_IDENTITY()
 END TRY
 BEGIN CATCH
 	ROLLBACK

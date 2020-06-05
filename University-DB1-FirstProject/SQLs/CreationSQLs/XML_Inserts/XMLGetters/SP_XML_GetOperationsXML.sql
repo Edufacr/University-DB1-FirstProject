@@ -3,7 +3,7 @@
 -- Create date: 02/06/2020
 -- Description:	Gets Cc XML
 -- =============================================
-CREATE PROCEDURE SP_XML_GetCcXML
+CREATE PROCEDURE SP_XML_GetOperationsXML
 	-- Add the parameters for the stored procedure here
     @xmlDocument xml OUTPUT
 AS

@@ -28,6 +28,7 @@ BEGIN TRY
 		SELECT Username,Password,UserType = 0 ,Active = 1  FROM OPENXML(@docHandle,'/Administrador/UsuarioAdmi') with (Username varchar(50) '@user',Password varchar(50) '@password',UserType varchar(20) '@tipo')
 		where UserType != 'administrador';
 		EXEC sp_xml_removedocument @docHandle; -- Remove the internal representation of the XML document.
+		RETURN SCOPE_IDENTITY();
 	COMMIT
 END TRY
 BEGIN CATCH

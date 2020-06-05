@@ -1,0 +1,5 @@
+Lista de Codigos de Errores
+Para hacerlo mas bonito se deberia poner en un xml
+------------------------------------------------------------
+
+-5000,"No coincide contraseña ingresada con el username ingresado"
