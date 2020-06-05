@@ -9,7 +9,7 @@ GO
 -- =============================================
 CREATE PROCEDURE SP_insertPercentageCC
 	-- Add the parameters for the stored procedure here
-    @Id int, @pPercentage int
+    @pId int, @pPercentage REAL
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -18,7 +18,7 @@ BEGIN
     -- Insert statements for procedure here
 BEGIN TRY
 	BEGIN TRANSACTION
-		INSERT INTO DB1P_Percentage_CC (Id, Percentage)
+		INSERT INTO DB1P_Percentage_CC (Id, PercentageValue)
         VALUES (@pId,@pPercentage);
         return SCOPE_IDENTITY()
 	COMMIT

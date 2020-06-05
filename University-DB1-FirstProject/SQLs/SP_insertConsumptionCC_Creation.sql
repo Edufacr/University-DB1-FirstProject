@@ -9,7 +9,7 @@ GO
 -- =============================================
 CREATE PROCEDURE SP_insertConsumptionCC
 	-- Add the parameters for the stored procedure here
-    @Id int, @pConsumptionM3 int --preguntar si hay que cambiarlo a money
+    @pId int, @pConsumptionM3 int --preguntar si hay que cambiarlo a money
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from

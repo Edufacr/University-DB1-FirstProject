@@ -7,7 +7,7 @@ GO
 -- Create date: 04/06/2020
 -- Description:	Gets all users that can acces a property
 -- =============================================
-CREATE PROCEDURE SP_
+CREATE PROCEDURE SP_getPropertyUsers
 	-- Add the parameters for the stored procedure here
     @pPropertyNumber int
 AS

@@ -19,20 +19,20 @@ BEGIN TRY
 		DECLARE @docHandle int;
 		DECLARE @xmlDocument xml;
 		DECLARE @xmlTable TABLE(Id int,Name VARCHAR(50), MoratoryInterestRate REAL,ReciptEmisionDays TINYINT,
-		ExpirationDays TINYINT, ConsumptionM3 money, Amount money,PercentageValue int, CCType varchar(20));
+		ExpirationDays TINYINT, ConsumptionM3 money, Amount money,PercentageValue REAL, CCType varchar(20));
 		EXEC SP_XML_GetCcXML @xmlDocument OUTPUT;
 		EXEC sp_xml_preparedocument @docHandle OUTPUT, @xmlDocument; 
 
 		INSERT INTO @xmlTable (Id,Name, MoratoryInterestRate,ReciptEmisionDays,ExpirationDays,ConsumptionM3, Amount,
 		PercentageValue,CCType)
-		SELECT Id,Nombre,MoratoryInterestRate,DiaCobro,QDiasVencimiento,ConsumptionM3,Amount,PercentageValue,CCType
+		SELECT Id,Name,MoratoryInterestRate,ReciptEmisionDays,ExpirationDays,ConsumptionM3,Amount,PercentageValue,CCType
 		FROM OPENXML(@docHandle,'/Conceptos_de_Cobro/conceptocobro') 
 		with (Id int '@id', Name VARCHAR(50) '@Nombre',MoratoryInterestRate REAL '@TasaInteresMoratoria',
 		ReciptEmisionDays TINYINT '@DiaCobro',ExpirationDays TINYINT '@QDiasVencimiento',ConsumptionM3 MONEY '@ValorM3',
-		Amount MONEY '@Monto',PercentageValue int '@ValorPorcentaje', CCType varchar(20) '@TipoCC');
+		Amount MONEY '@Monto',PercentageValue REAL '@ValorPorcentaje', CCType varchar(20) '@TipoCC');
 		
-		INSERT INTO DB1P_ChargeConcepts (Id,Name, MoratoryInterestRate,ReciptEmisionDays,ExpirationDays)
-		SELECT Id,Nombre,MoratoryInterestRate,DiaCobro,QDiasVencimiento
+		INSERT INTO DB1P_ChargeConcepts (Id,Name, MoratoryInterestRate,ReciptEmisionDay,ExpirationDays)
+		SELECT Id,Name,MoratoryInterestRate,ReciptEmisionDays,ExpirationDays
 		FROM @xmlTable;
 		
 		INSERT INTO DB1P_Consumption_CC (Id,ConsumptionM3)
