@@ -39,11 +39,11 @@ BEGIN TRY
 		SELECT Id,ConsumptionM3
 		FROM @xmlTable where CCType = 'CC Consumo';
 
-		INSERT INTO DB1P_Consumption_CC (Id,PercentageValue)
+		INSERT INTO DB1P_Percentage_CC (Id,PercentageValue)
 		SELECT Id,PercentageValue
 		FROM @xmlTable where CCType = 'CC Porcentual';
 
-		INSERT INTO DB1P_Consumption_CC (Id,Amount)
+		INSERT INTO DB1P_Fixed_CC (Id,Amount)
 		SELECT Id,Amount
 		FROM @xmlTable where CCType = 'CC Fijo';
 		EXEC sp_xml_removedocument @docHandle; -- Remove the internal representation of the XML document.
