@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS dbo.DB1P_Comsumption_CC;
 CREATE TABLE dbo.DB1P_Consumption_CC
 	(
 	Id int NOT NULL,
-	ConsumptionM3 int NOT NULL
+	ConsumptionM3 MONEY NOT NULL
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_Fixed_CC;
@@ -102,7 +102,7 @@ CREATE TABLE dbo.DB1P_ChargeConcepts
 	Name varchar(50) NOT NULL,
 	MoratoryInterestRate real NOT NULL,
 	ReciptEmisionDay tinyint NOT NULL,
-	ExpirationDays tinyint NOT NULL
+	ExpirationDays tinyint NOT NULL,
 	)  ON [PRIMARY]
 
 DROP TABLE IF EXISTS dbo.DB1P_Users;
