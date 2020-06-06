@@ -5,7 +5,7 @@ namespace University_DB1_FirstProject.Models
     public class LegalOwnerRegisterModel
     {
         [Required]
-        public string DocValue { get; set; }
+        public int DocValue { get; set; }
         
         [Required]
         public string ResponsibleName { get; set; }
@@ -14,6 +14,6 @@ namespace University_DB1_FirstProject.Models
         public int RespDocValue { get; set; }
         
         [Required]
-        public string RespDocTypeId { get; set; }
+        public int RespDocTypeId { get; set; }
     }
 }

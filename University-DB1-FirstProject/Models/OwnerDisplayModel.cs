@@ -14,7 +14,7 @@ namespace University_DB1_FirstProject.Models
         
         [Required]
         [Display(Name = "ID")]
-        public string DocValue { get; set; }
+        public int DocValue { get; set; }
 
     }
 }
