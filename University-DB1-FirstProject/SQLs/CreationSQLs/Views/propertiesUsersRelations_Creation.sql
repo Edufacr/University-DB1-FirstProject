@@ -4,7 +4,7 @@ go
 create view activePropertiesUsersRelations as
 	
 	select u.Id as UserId, u.Username, u.UserType, u.Password,
-		   p.Id as PropertyId, p.Name as PropertyName, p.Address as PropertyAddress, p.PropertyNumber as PropertyNumber, p.Value as PropertyValue,
+		   p.Id as PropertyId, p.Address as PropertyAddress, p.PropertyNumber as PropertyNumber, p.Value as PropertyValue,
 		   pu.RelationId as RelationId
 	from activePropertiesUsers as pu
 		inner join activeProperties as p 

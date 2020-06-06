@@ -121,7 +121,7 @@ DROP TABLE IF EXISTS dbo.DB1P_Properties;
 CREATE TABLE dbo.DB1P_Properties
 	(
 	Id int NOT NULL IDENTITY (1, 1),
-	Name varchar(50) NOT NULL,
+	Name varchar(50),
 	Value money NOT NULL,
 	Address varchar(100) NOT NULL,
 	PropertyNumber int NOT NULL,
