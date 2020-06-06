@@ -42,7 +42,7 @@ namespace University_DB1_FirstProject.Controllers
             InsertOwnerOfProperty = new SqlCommand("SP_insertPropertyOwner", connection);
             InsertOwnerOfProperty.CommandType = CommandType.StoredProcedure;
             
-            GetOwnersOfProperty = new SqlCommand("SP_getOwnerOfProperty", connection);
+            GetOwnersOfProperty = new SqlCommand("SP_getOwnersOfProperty", connection);
             GetOwnersOfProperty.CommandType = CommandType.StoredProcedure;
             
             GetActiveOwners = new SqlCommand("SP_getActiveOwners", connection);
