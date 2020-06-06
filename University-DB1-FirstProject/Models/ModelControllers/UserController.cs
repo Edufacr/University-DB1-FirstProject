@@ -14,7 +14,7 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand DeleteUserOfProperty;
         private SqlCommand InsertUserOfProperty; //TODO
 
-        
+       
         private SqlCommand GetUsersOfProperty;
         private SqlCommand GetActiveUsers;
         private SqlCommand GetUsersByUsername;
