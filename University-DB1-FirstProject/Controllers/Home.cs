@@ -1,9 +1,8 @@
-﻿using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace University_DB1_FirstProject.Controllers
 {
-    public class LogIn : Controller
+    public class Home : Controller
     {
         // GET
         public IActionResult Index()
