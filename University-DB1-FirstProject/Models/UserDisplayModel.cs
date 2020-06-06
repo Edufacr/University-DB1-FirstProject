@@ -10,7 +10,7 @@ namespace University_DB1_FirstProject.Models
         public string Name { get; set; }
          
         [Required]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Tipo de Usuario")]
+        public bool isAdmin { get; set; }
     }
 }

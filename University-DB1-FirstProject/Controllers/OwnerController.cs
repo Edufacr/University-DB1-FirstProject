@@ -39,6 +39,9 @@ namespace University_DB1_FirstProject.Controllers
             DeleteOwnerOfProperty = new SqlCommand("SP_deletePropertyOwner", connection);
             DeleteOwnerOfProperty.CommandType = CommandType.StoredProcedure;
             
+            InsertOwnerOfProperty = new SqlCommand("SP_insertPropertyOwner", connection);
+            InsertOwnerOfProperty.CommandType = CommandType.StoredProcedure;
+            
             GetOwnersOfProperty = new SqlCommand("SP_getOwnerOfProperty", connection);
             GetOwnersOfProperty.CommandType = CommandType.StoredProcedure;
             
@@ -86,10 +89,24 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteDeleteOwnerOfProperty(PropertyDisplayModel property, OwnerDisplayModel owner)
         {
+            
             DeleteOwnerOfProperty.Parameters.Add("@pPropertyPropertyNumber", SqlDbType.Int).Value = property.PropertyNumber;
             DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocValue", SqlDbType.Int).Value = owner.DocValue;
             DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
+            
             return ExecuteNonQueryCommand(DeleteOwnerOfProperty);
+            
+        }
+        
+        public int ExecuteInsertOwnerOfProperty(PropertyDisplayModel property, OwnerDisplayModel owner)
+        {
+            
+            InsertOwnerOfProperty.Parameters.Add("@pPropertyPropertyNumber", SqlDbType.Int).Value = property.PropertyNumber;
+            InsertOwnerOfProperty.Parameters.Add("@pOwnerDocValue", SqlDbType.Int).Value = owner.DocValue;
+            InsertOwnerOfProperty.Parameters.Add("@pOwnerDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
+            
+            return ExecuteNonQueryCommand(InsertOwnerOfProperty);
+            
         }
 
         public List<OwnerDisplayModel> ExecuteGetOwnersOfProperty(PropertyDisplayModel property)
