@@ -14,10 +14,25 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Update="Views\LogIn.cshtml">
+      <Content Remove="Views\Index.cshtml" />
+      <Content Update="Views\LogIn\Index.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Remove="Views\LogIn.cshtml" />
+      <Content Update="Views\Shared\_Layout.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Home\Index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Views\Index.cshtml.cs" />
+      <Compile Remove="Views\LogIn.cshtml.cs" />
     </ItemGroup>
 
 </Project>
