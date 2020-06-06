@@ -133,7 +133,7 @@ namespace University_DB1_FirstProject.Controllers
                 {
                     FixedCCDisplayModel ccOnProperty = new FixedCCDisplayModel();
                     
-
+                    
                     
                     result.Add(ccOnProperty);
                     
