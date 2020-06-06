@@ -11,7 +11,7 @@ namespace University_DB1_FirstProject.Models
         public int DocTypeId { get; set; }
         
         [Required]
-        public int DocValue { get; set; }
+        public string DocValue { get; set; }
 
     }
 }

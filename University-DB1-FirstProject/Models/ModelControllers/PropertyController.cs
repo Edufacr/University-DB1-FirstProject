@@ -49,7 +49,7 @@ namespace University_DB1_FirstProject.Controllers
 
         public int ExecuteInsertProperty(PropertyRegisterModel property)
         {
-            InsertProperty.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = property.Name;
+            InsertProperty.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value =  "Unnamed";
             InsertProperty.Parameters.Add("@pValue", SqlDbType.Money).Value = property.Value;
             InsertProperty.Parameters.Add("@pAddress", SqlDbType.VarChar, 100).Value = property.Address;
             InsertProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value = property.Value;
@@ -68,7 +68,7 @@ namespace University_DB1_FirstProject.Controllers
         public int ExecuteUpdateProperty(PropertyDisplayModel originalProperty, PropertyRegisterModel propertyChanges)
         {
             UpdateProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value = originalProperty.PropertyNumber;
-            UpdateProperty.Parameters.Add("@pNewName", SqlDbType.VarChar, 50).Value = propertyChanges.Name;
+            UpdateProperty.Parameters.Add("@pNewName", SqlDbType.VarChar, 50).Value = "Unnamed";
             UpdateProperty.Parameters.Add("@pNewValue", SqlDbType.Money).Value = propertyChanges.Value;
             UpdateProperty.Parameters.Add("@pNewAddress", SqlDbType.VarChar, 100).Value = propertyChanges.Address;
             UpdateProperty.Parameters.Add("@pNewPropertyNumber", SqlDbType.Int).Value = propertyChanges.PropertyNumber;
@@ -140,7 +140,6 @@ namespace University_DB1_FirstProject.Controllers
                 {
                     PropertyDisplayModel property = new PropertyDisplayModel();
                     
-                    property.Name = Convert.ToString(reader["PropertyName"]);
                     property.Address = Convert.ToString(reader["PropertyAddress"]);
                     property.Value = Convert.ToSingle(reader["PropertyValue"]);
                     property.PropertyNumber = Convert.ToInt32(reader["PropertyNumber"]);

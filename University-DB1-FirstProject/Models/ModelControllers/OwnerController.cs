@@ -39,7 +39,10 @@ namespace University_DB1_FirstProject.Controllers
             DeleteOwnerOfProperty = new SqlCommand("SP_deletePropertyOwner", connection);
             DeleteOwnerOfProperty.CommandType = CommandType.StoredProcedure;
             
-            GetOwnersOfProperty = new SqlCommand("SP_getOwnerOfProperty", connection);
+            InsertOwnerOfProperty = new SqlCommand("SP_insertPropertyOwner", connection);
+            InsertOwnerOfProperty.CommandType = CommandType.StoredProcedure;
+            
+            GetOwnersOfProperty = new SqlCommand("SP_getOwnersOfProperty", connection);
             GetOwnersOfProperty.CommandType = CommandType.StoredProcedure;
             
             GetActiveOwners = new SqlCommand("SP_getActiveOwners", connection);

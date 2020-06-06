@@ -4,9 +4,7 @@ namespace University_DB1_FirstProject.Models
 {
     public class PropertyRegisterModel
     {
-        [Required]
-        public string Name { get; set; }
-        
+
         [Required]
         public string Address { get; set; }
         
