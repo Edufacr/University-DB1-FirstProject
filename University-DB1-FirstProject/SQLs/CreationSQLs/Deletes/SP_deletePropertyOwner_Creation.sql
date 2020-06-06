@@ -14,12 +14,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/5/30
 -- Description:	Delete  an element from DB1P_PropertiesOwners.
 -- =============================================
 CREATE PROCEDURE SP_deletePropertyOwner
-		@pOwnerDocValue int, 
+		@pOwnerDocValue VARCHAR(30), 
 		@pPropertyPropertyNumber int
 AS
 BEGIN

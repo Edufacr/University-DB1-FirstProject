@@ -14,15 +14,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/5/30
 -- Description:	Updates an element of the table DB1P_Owners.
 -- =============================================
 create PROCEDURE SP_updateOwner 
 	
-	@pDocValue int, 
+	@pDocValue VARCHAR(30), 
 	@pNewName varchar(50),
-	@pNewDocValue int,
+	@pNewDocValue VARCHAR(30),
 	@pNewDocType_Id int
 
 AS

@@ -14,12 +14,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/6/1
 -- Description:	Query an owner's info by DocValue and DocType_Id
 -- =============================================
 CREATE PROCEDURE SP_getOwnerInfoByDocValue
-	@pDocValue int, 
+	@pDocValue VARCHAR(30), 
 	@pDocType_Id int
 AS
 BEGIN

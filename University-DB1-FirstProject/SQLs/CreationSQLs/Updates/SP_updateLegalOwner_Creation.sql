@@ -14,7 +14,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/5/31
 -- Description:	Updates a [DB1P_LegalOwners] element.
 -- =============================================
@@ -22,8 +22,8 @@ CREATE PROCEDURE SP_updateLegalOwner
 	
 	@pNewResponsibleName varchar(50), 
 	@pNewResp_DocId_type int, 
-	@pNewResp_DocValue int, 
-	@pLegalOwner_DocValue int
+	@pNewResp_DocValue VARCHAR(30), 
+	@pLegalOwner_DocValue VARCHAR(30)
 
 AS 
 BEGIN

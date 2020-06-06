@@ -22,7 +22,7 @@ GO
 create procedure dbo.SP_insertPropertyOwner 	
 	
 	@pPropertyNumber int, 
-	@pOwnerDocValue int
+	@pOwnerDocValue VARCHAR(30)
 as
 begin
 

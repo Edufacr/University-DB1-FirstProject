@@ -19,7 +19,7 @@ GO
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE SP_getOwnerInfo
-	@pDocValue int, 
+	@pDocValue VARCHAR(30), 
 	@pDocType_Id int
 AS
 BEGIN

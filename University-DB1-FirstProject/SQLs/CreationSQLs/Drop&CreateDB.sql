@@ -80,7 +80,7 @@ CREATE TABLE dbo.DB1P_LegalOwners
 	Id int NOT NULL,
 	ResponsibleName varchar(50) NOT NULL,
 	Resp_DocType_Id int NOT NULL,
-	Resp_DocValue int NOT NULL,
+	Resp_DocValue VARCHAR(30) NOT NULL,
 	CONSTRAINT AK_Resp_DocValue UNIQUE(Resp_DocValue,Resp_DocType_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]
@@ -91,7 +91,7 @@ CREATE TABLE dbo.DB1P_Owners
 	Id int NOT NULL IDENTITY (1, 1),
 	Name varchar(50) NOT NULL,
 	DocType_Id int NOT NULL,
-	DocValue int NOT NULL,
+	DocValue VARCHAR(30) NOT NULL,
 	CONSTRAINT AK_DocValue UNIQUE(DocValue,DocType_Id),
 	Active bit NOT NULL
 	)  ON [PRIMARY]

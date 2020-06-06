@@ -14,12 +14,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jorge Gutiérrez Cordero
+-- Author:		Jorge Gutiï¿½rrez Cordero
 -- Create date: 2020/6/1
 -- Description:	Query the properties of an owner.
 -- =============================================
 CREATE PROCEDURE SP_getPropertiesOfOwner
-	@pDocValue int,
+	@pDocValue VARCHAR(30),
 	@pDocType_Id int
 AS
 BEGIN

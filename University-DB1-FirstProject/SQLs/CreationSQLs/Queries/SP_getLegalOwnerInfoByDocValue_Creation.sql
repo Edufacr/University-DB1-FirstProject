@@ -11,7 +11,7 @@ GO
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_getLegalOwnerInfoByDocValue]
-	@pDocValue int
+	@pDocValue VARCHAR(30)
 AS
 BEGIN
 
