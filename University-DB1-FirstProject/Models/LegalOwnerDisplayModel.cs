@@ -10,7 +10,7 @@ namespace University_DB1_FirstProject.Models
         
         [Required]
         [Display(Name = "Cédula Jurídica")]
-        public int DocValue { get; set; }
+        public string DocValue { get; set; }
         
         [Required]
         [Display(Name = "Nombre Responsable")]
@@ -18,7 +18,7 @@ namespace University_DB1_FirstProject.Models
         
         [Required]
         [Display(Name = "ID Responsable")]
-        public int RespDocValue { get; set; }
+        public string RespDocValue { get; set; }
         
         [Required]
         [Display(Name = "Tipo ID Responsable")]
