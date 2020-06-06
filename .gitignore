@@ -25,5 +25,12 @@ University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/.idea/in
 University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/.idea/workspace.xml
 ExecuteAllSQL-Eduardo.bat
 
+<<<<<<< Updated upstream
 
 University-DB1-FirstProject/Interfaces/IConnectionStrings.cs
+=======
+University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/riderModule.iml
+University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/.idea/vcs.xml
+University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/.idea/projectSettingsUpdater.xml
+University-DB1-FirstProject/.idea/.idea.University-DB1-FirstProject.dir/.idea/modules.xml
+>>>>>>> Stashed changes
