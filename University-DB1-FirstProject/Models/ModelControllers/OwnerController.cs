@@ -67,7 +67,7 @@ namespace University_DB1_FirstProject.Controllers
 
         public int ExecuteDeleteOwner(OwnerDisplayModel ownerInstance)
         {
-            DeleteOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = ownerInstance.DocValue;
+            DeleteOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = ownerInstance.DocValue;
             DeleteOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = ownerInstance.DocType;
 
             return ExecuteNonQueryCommand(DeleteOwner);
@@ -76,11 +76,11 @@ namespace University_DB1_FirstProject.Controllers
 
         public int ExecuteUpdateOwner(OwnerDisplayModel originalOwner, OwnerRegisterModel newOwner)
         {
-            UpdateOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = originalOwner.DocValue;
+            UpdateOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = originalOwner.DocValue;
             UpdateOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = originalOwner.DocType;
             
             UpdateOwner.Parameters.Add("@pNewName", SqlDbType.VarChar, 50).Value = newOwner.Name;
-            UpdateOwner.Parameters.Add("@pNewDocValue", SqlDbType.Int).Value = newOwner.DocValue;
+            UpdateOwner.Parameters.Add("@pNewDocValue", SqlDbType.VarChar, 30).Value = newOwner.DocValue;
             UpdateOwner.Parameters.Add("@pNewDocType_Id", SqlDbType.Int).Value = newOwner.DocTypeId;
             
             return ExecuteNonQueryCommand(UpdateOwner);
@@ -90,7 +90,7 @@ namespace University_DB1_FirstProject.Controllers
         public int ExecuteDeleteOwnerOfProperty(PropertyDisplayModel property, OwnerDisplayModel owner)
         {
             DeleteOwnerOfProperty.Parameters.Add("@pPropertyPropertyNumber", SqlDbType.Int).Value = property.PropertyNumber;
-            DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocValue", SqlDbType.Int).Value = owner.DocValue;
+            DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocValue", SqlDbType.VarChar, 30).Value = owner.DocValue;
             DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
             return ExecuteNonQueryCommand(DeleteOwnerOfProperty);
         }
@@ -119,7 +119,7 @@ namespace University_DB1_FirstProject.Controllers
         
         public List<OwnerDisplayModel> ExcecuteGetOwnersByDocValue(OwnerDisplayModel originalOwner)
         {
-            GetOwnersByDocValue.Parameters.Add("@pDocValue", SqlDbType.Int).Value = originalOwner.DocValue;
+            GetOwnersByDocValue.Parameters.Add("@pDocValue",SqlDbType.VarChar, 30).Value = originalOwner.DocValue;
             UpdateOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = originalOwner.DocType;
             
             List<OwnerDisplayModel> result = ExecuteQueryCommand(GetOwnersByDocValue);
@@ -160,7 +160,7 @@ namespace University_DB1_FirstProject.Controllers
                     OwnerDisplayModel owner = new OwnerDisplayModel();
                     
                     owner.Name = Convert.ToString(reader["Name"]);
-                    owner.DocValue = Convert.ToInt32(reader["DocValue"]);
+                    owner.DocValue = Convert.ToString(reader["DocValue"]);
                     owner.DocType = Convert.ToString(reader["Doctype"]);
                     
                     result.Add(owner);
