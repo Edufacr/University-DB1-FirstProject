@@ -8,10 +8,10 @@ namespace University_DB1_FirstProject.Models
         public string Name { get; set; }
         
         [Required]
-        public string DocTypeId { get; set; }
+        public int DocTypeId { get; set; }
         
         [Required]
-        public int DocValue { get; set; }
+        public string DocValue { get; set; }
 
     }
 }
