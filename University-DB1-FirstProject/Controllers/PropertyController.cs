@@ -13,7 +13,8 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand InsertProperty;
         private SqlCommand DeleteProperty;
         private SqlCommand UpdateProperty;
-        
+
+        private SqlCommand GetActiveProperties;
         private SqlCommand GetPropertiesOfOwner;
         private SqlCommand GetPropertiesOfUser;
         private SqlCommand GetPropertyInfoByName;
