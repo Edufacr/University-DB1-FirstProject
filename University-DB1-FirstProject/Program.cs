@@ -20,17 +20,7 @@ namespace University_DB1_FirstProject
             string connectionString = IConnectionStrings.CONNECTIONSTRING;
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = connectionString;
-
-            OwnerRegisterModel owner = new OwnerRegisterModel();
-            owner.Name = "Jorge Gutierrez Gurdián";
-            owner.DocValue = 10773241;
-            owner.DocTypeId = 1;
-            OwnerController controller = new OwnerController(connection);  
-            
-            //controller.ExecuteInsertOwner(owner);
-            controller.ExecuteInsertOwner(owner);
-            
-            //CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
