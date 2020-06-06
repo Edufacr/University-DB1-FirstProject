@@ -13,10 +13,10 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand InsertProperty;
         private SqlCommand DeleteProperty;
         private SqlCommand UpdateProperty;
-
-        private SqlCommand GetActiveProperties;
+        
         private SqlCommand GetPropertiesOfOwner;
         private SqlCommand GetPropertiesOfUser;
+        private SqlCommand GetPropertyInfoByName;
         private SqlCommand GetPropertyInfoByPropertyNumber;
 
         public PropertyController(SqlConnection pConnection)
@@ -38,7 +38,10 @@ namespace University_DB1_FirstProject.Controllers
             
             GetPropertiesOfUser = new SqlCommand("SP_getUsersProperties", connection);
             GetPropertiesOfUser.CommandType = CommandType.StoredProcedure;
-
+            
+            GetPropertyInfoByName = new SqlCommand("SP_getPropertyInfoByName", connection);
+            GetPropertyInfoByName.CommandType = CommandType.StoredProcedure;
+            
             GetPropertyInfoByPropertyNumber = new SqlCommand("SP_getPropertyInfoByPropertyNumber", connection);
             GetPropertyInfoByPropertyNumber.CommandType = CommandType.StoredProcedure;
         }
@@ -76,8 +79,8 @@ namespace University_DB1_FirstProject.Controllers
         
         public List<PropertyDisplayModel> ExecuteGetPropertiesOfOwner(OwnerDisplayModel owner)
         {
-            GetPropertiesOfOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = owner.DocValue;
-            GetPropertiesOfOwner.Parameters.Add("@pDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
+            GetPropertiesOfOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = owner.DocValue;
+            GetPropertiesOfOwner.Parameters.Add("@pDocType", SqlDbType.Int).Value = owner.DocType;
 
             return ExecuteQueryCommand(GetPropertiesOfOwner);
         }
@@ -89,7 +92,15 @@ namespace University_DB1_FirstProject.Controllers
             return ExecuteQueryCommand(GetPropertiesOfUser);
             
         }
+        
+        public List<PropertyDisplayModel> ExecuteGetPropertyInfoByName(PropertyDisplayModel property)
+        {
+            GetPropertyInfoByName.Parameters.Add("@pName", SqlDbType.VarChar).Value = property.Name;
 
+            return ExecuteQueryCommand(GetPropertyInfoByName);
+
+        }
+        
         public List<PropertyDisplayModel> ExecuteGetPropertyInfoByPropertyNumber(PropertyDisplayModel property)
         {
             GetPropertyInfoByPropertyNumber.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value 
