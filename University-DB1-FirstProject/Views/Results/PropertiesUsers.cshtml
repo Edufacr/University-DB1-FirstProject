@@ -1,4 +1,5 @@
-﻿@model University_DB1_FirstProject.Models.UserDisplayModel
+﻿@using University_DB1_FirstProject.Models
+@model List<University_DB1_FirstProject.Models.UserDisplayModel>
 
 @{
     Layout = null;
@@ -8,11 +9,17 @@
 
 <html>
 <head>
-    <title>title</title>
+    <title>Properties Users</title>
 </head>
 <body>
+<h1>Lista de usuarios que pueden acceder a la propiedad num: @ViewData["PNum"]</h1>
 <div>
-      
+<ul>
+    @foreach (UserDisplayModel user in Model)
+    {
+        <li> @user.Name AdminType: @user.isAdmin </li>
+    }
+</ul>
 </div>
 </body>
 </html>

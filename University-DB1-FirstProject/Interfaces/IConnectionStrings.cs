@@ -6,7 +6,7 @@ namespace University_DB1_FirstProject.Interfaces
         public static readonly string EDUARDOCONNECTIONSTR = "Data Source=DESKTOP-FM67O2I;Initial Catalog=DB1-FirstProject;Integrated Security=True";
         
                                                 //Connection string to use
-        public static readonly string CONNECTIONSTRING = JORGECONNECTIONSTR;
+        public static readonly string CONNECTIONSTRING = EDUARDOCONNECTIONSTR;
     }
 
 }

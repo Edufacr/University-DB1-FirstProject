@@ -7,23 +7,20 @@ namespace University_DB1_FirstProject.Controllers
 {
     public class LogIn : Controller
     {
-        private UserController UserController = UserController.getInstance();
+        private readonly UserController _userController = UserController.getInstance();
         
         // GET
         public IActionResult Index(string pUsername,string pPassword)
         {
             if (pUsername != null && pPassword != null)
             {
-                if (UserController.ExecuteValidatePassword(pUsername, pPassword))
+                if (_userController.ExecuteValidatePassword(pUsername, pPassword))
                 {
-                    
                     Console.WriteLine(pUsername);
                     Console.WriteLine(pPassword);
-                    
-                return Redirect("Home/Properties_Querry");
+                    return Redirect("Home/Index");
                 }
             }
-       
             return View();
         }
     }

@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Properties</title>
+</head>
+<body>
+<div>
+    <h2>List all properties</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "pOption" value = "0" />
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>List the users that can acces a property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "pOption" value = "1" />
+            Property Number: <input type="text" name="pPropertyNumber">
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Inserts a new property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "pOption" value = "2" />
+            Property Number: <input type="text" name="pPropertyNumber">
+            Address: <input type="text" name="pAddress">
+            Value: <input type="number" name="pValue">
+            <input type="submit" value="Insert"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Deletes a property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "pOption" value = "3" />
+            Property Number: <input type="text" name="pPropertyNumber">
+            <input type="submit" value="Delete"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Updates a property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "pOption" value = "4" />
+            Property Number: <input type="text" name="pPropertyNumber">
+            Address: <input type="text" name="pAddress">
+            Value: <input type="number" name="pValue">
+            New Property Number: <input type="text" name="pNewPropertyNumber">
+            <input type="submit" value="Update"/>
+        </p>
+    </form>
+</div>
+</body>
+</html>

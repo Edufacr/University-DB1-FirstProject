@@ -24,23 +24,11 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Update="Views\LogIn\LogInScreen.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
       <Content Update="Views\Home\Index.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Update="Views\Home\Properties_Querry.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
       <Content Update="Views\Querrys\PropertiesQuerrys.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Views\SectionIndexes\PropertiesIndex.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
@@ -49,6 +37,26 @@
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
       <Content Update="Views\Results\PropertiesUsers.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Home\Owners_Index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Home\Properties_Index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Home\Users_Index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Results\AllProperties.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Shared\Accomplished.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>

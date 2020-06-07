@@ -4,32 +4,18 @@
 
 <!DOCTYPE html>
 
-<html land = "en">
+<html>
 <head>
-    <title>Main Querrys</title>
+    <title>Main querrys menu</title>
 </head>
 <body>
+<p>Please select an option:</p>
 <div>
-    <section>
-        <header>List the users of a Property</header>
-        <form asp-controller="LogIn" asp-action="Index">
-            <p>
-                Username: <input type="text" name="pUsername">
-                <input type="submit" value="Log-In"/>
-            </p>
-         </form>
-    </section>
+    <ul>
+        <li><a href="/Home/Index?pOption=0">Users menu</a></li>
+        <li><a href="/Home/Index?pOption=1">Owners menu</a></li>
+        <li><a href="/Home/Index?pOption=2">Properties actions</a></li>
+    </ul>
 </div>
-<div>
-    <section>
-        <header>List the users of a Property</header>
-        <form asp-controller="LogIn" asp-action="Index">
-            <p>
-                Username: <input type="text" name="pUsername">
-                <input type="submit" value="Log-In"/>
-            </p>
-         </form>
-    </section>
-</div> 
 </body>
 </html>
