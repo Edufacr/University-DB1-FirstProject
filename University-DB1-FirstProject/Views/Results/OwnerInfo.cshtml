@@ -1,0 +1,22 @@
+﻿@model University_DB1_FirstProject.Models.OwnerDisplayModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Info of Owner: @ViewData["Id"]</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li> Doc Id: @Model.DocValue</li>
+        <li> Doc Id type: @Model.DocType</li>
+        <li> Name: @Model.Name </li>
+    </ul>
+</div>
+</body>
+</html>

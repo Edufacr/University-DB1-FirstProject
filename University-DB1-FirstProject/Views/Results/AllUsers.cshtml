@@ -1,0 +1,25 @@
+﻿@using University_DB1_FirstProject.Models
+@model List<University_DB1_FirstProject.Models.UserDisplayModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Owners</title>
+</head>
+<body>
+<h1>List of active users</h1>
+<div>
+<ul>
+    @foreach (UserDisplayModel p in Model)
+    {
+        <li> Username: @p.Name Type: @p.isAdmin </li>
+    }
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿@model University_DB1_FirstProject.Models.PropertyDisplayModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Info of Property number: @ViewData["Id"]</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li> Property number: @Model.PropertyNumber</li>
+        <li> Value: @Model.Value</li>
+        <li> Address: @Model.Address </li>
+    </ul>
+</div>
+</body>
+</html>

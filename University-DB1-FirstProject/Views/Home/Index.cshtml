@@ -1,7 +1,4 @@
-﻿@page
-@model University_DB1_FirstProject.Views.Home.Index
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,11 +6,16 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Main querrys menu</title>
 </head>
 <body>
+<p>Please select an option:</p>
 <div>
-    
+    <ul>
+        <li><a href="/Home/Index?pOption=0">Users menu</a></li>
+        <li><a href="/Home/Index?pOption=1">Owners menu</a></li>
+        <li><a href="/Home/Index?pOption=2">Properties actions</a></li>
+    </ul>
 </div>
 </body>
 </html>

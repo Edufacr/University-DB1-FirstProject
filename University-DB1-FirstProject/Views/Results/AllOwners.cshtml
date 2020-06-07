@@ -1,0 +1,25 @@
+﻿@using University_DB1_FirstProject.Models
+@model List<University_DB1_FirstProject.Models.OwnerDisplayModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Owners</title>
+</head>
+<body>
+<h1>List of active owners</h1>
+<div>
+<ul>
+    @foreach (OwnerDisplayModel p in Model)
+    {
+        <li> Doc Id: @p.DocValue Doc Id type: @p.DocType Name: @p.Name </li>
+    }
+</ul>
+</div>
+</body>
+</html>

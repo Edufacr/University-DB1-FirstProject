@@ -31,7 +31,7 @@ BEGIN
 		from activeProperties as p
 		where p.PropertyNumber = @pPropertyNumber
 
-		select * 
+		select r.ownerName as Name, r.ownerDocValue as DocValue, r.ownerDocType as DocType 
 		from activePropertiesOwnersRelations as r
 		where r.PropertyId = @PropertyId
 

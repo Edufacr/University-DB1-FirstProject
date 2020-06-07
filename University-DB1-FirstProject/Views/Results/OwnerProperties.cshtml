@@ -1,0 +1,25 @@
+﻿@using University_DB1_FirstProject.Models
+@model List<University_DB1_FirstProject.Models.PropertyDisplayModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Properties Users</title>
+</head>
+<body>
+<h1>List of properties own by owner: @ViewData["Id"]</h1>
+<div>
+<ul>
+    @foreach (PropertyDisplayModel p in Model)
+    {
+        <li> Property number: @p.PropertyNumber Value: @p.Value Address: @p.Address </li>
+    }
+</ul>
+</div>
+</body>
+</html>

@@ -16,9 +16,12 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetActiveLegalOwners;
         private SqlCommand GetLegalOwnerByDocValue;
         
-        public LegalOwnerController(SqlConnection pConnection)
+        public static LegalOwnerController Singleton;
+
+        
+        private LegalOwnerController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertLegalOwner = new SqlCommand("SP_insertLegalOwner", connection);
             InsertLegalOwner.CommandType = CommandType.StoredProcedure;
@@ -35,6 +38,15 @@ namespace University_DB1_FirstProject.Controllers
             GetLegalOwnerByDocValue.CommandType = CommandType.StoredProcedure;
         }
 
+        
+        public static LegalOwnerController getInstance()
+        {
+            
+            return Singleton ??= new LegalOwnerController();
+            
+        }
+
+        
 
         public int ExecuteInsertLegalOwner(LegalOwnerRegisterModel legalOwner)
         {
@@ -66,7 +78,7 @@ namespace University_DB1_FirstProject.Controllers
         
         public List<LegalOwnerDisplayModel> ExecuteGetLegalOwnerByDocValue(LegalOwnerDisplayModel legalOwner)
         {
-            GetActiveLegalOwners.Parameters.Add("@pDocValue", SqlDbType.Int).Value = legalOwner.DocValue;
+            GetLegalOwnerByDocValue.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = legalOwner.DocValue;
             List<LegalOwnerDisplayModel> result = ExecuteQueryCommand(GetLegalOwnerByDocValue);
             return result;
             
@@ -74,12 +86,16 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
+
                 return result;
             }
             catch (Exception e)
@@ -106,13 +122,14 @@ namespace University_DB1_FirstProject.Controllers
                     legalOwner.Name = Convert.ToString(reader["LegalName"]);
                     legalOwner.DocValue = Convert.ToInt32(reader["LegalDocValue"]);
                     legalOwner.ResponsibleName = Convert.ToString(reader["ResponsibleName"]);
-                    legalOwner.RespDocValue = Convert.ToInt32(reader["RespDocValue"]);
-                    legalOwner.RespDocType = Convert.ToString(reader["Doctype"]);
+                    legalOwner.RespDocValue = Convert.ToString(reader["RespDocValue"]);
+                    legalOwner.RespDocType = Convert.ToString(reader["RespDocType"]);
                     
                     result.Add(legalOwner);
                     
                 }
-                
+                command.Parameters.Clear();
+
                 connection.Close();
             }
             catch (Exception e)

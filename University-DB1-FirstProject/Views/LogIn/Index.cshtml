@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Administrative Portal";
 
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
-<p>Hello from our View Template!</p>
+<p>Please enter your credentials:</p>
+
+<form asp-controller="LogIn" asp-action="Index">
+    <p>
+        Username: <input type="text" name="pUsername"> 
+        Password: <input type="text" name="pPassword">
+        <input type="submit" value="Log-In" />
+    </p>
+</form>
