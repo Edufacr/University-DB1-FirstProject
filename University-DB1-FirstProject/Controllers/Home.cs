@@ -24,48 +24,45 @@ namespace University_DB1_FirstProject.Controllers
         }
 
         public IActionResult Properties_Index(int? option, int? propertyNumber, float ?value,
-            int? newPropertyNumber, string address = "default")
+            int? newPropertyNumber, string? address)
         {
             Console.WriteLine(propertyNumber);
             return option switch
             {
                 0 => RedirectToAction("AllProperties","Results"),
-                1 => RedirectToAction("PropertiesUsers","Results",new RouteValueDictionary(new {controller = "Results",action = "PropertiesUsers",pPropertyNumber = propertyNumber })),
-                2 => RedirectToAction("InsertProperty","Results",new RouteValueDictionary{{"pPropertyNumber",propertyNumber},{"pAddress",address},{"pValue",value}}),
-                3 => RedirectToAction("DeleteProperty","Results",new RouteValueDictionary(new {controller = "Results",action = "PropertiesUsers",pPropertyNumber = propertyNumber })),
-                4 => RedirectToAction("InsertProperty","Results",new RouteValueDictionary{{"pPropertyNumber",propertyNumber},{"pAddress",address},{"pValue",value},{"pNewPropertyNumber",newPropertyNumber}}),
+                1 => RedirectToAction("PropertyInfo","Results",new RouteValueDictionary{{"pPropertyNumber",propertyNumber}}),
+                2 => RedirectToAction("PropertiesUsers","Results",new RouteValueDictionary(new {controller = "Results",action = "PropertiesUsers",pPropertyNumber = propertyNumber })),
+                3 => RedirectToAction("InsertProperty","Results",new RouteValueDictionary{{"pPropertyNumber",propertyNumber},{"pAddress",address},{"pValue",value}}),
+                4 => RedirectToAction("DeleteProperty","Results",new RouteValueDictionary(new {controller = "Results",action = "PropertiesUsers",pPropertyNumber = propertyNumber })),
+                5 => RedirectToAction("InsertProperty","Results",new RouteValueDictionary{{"pPropertyNumber",propertyNumber},{"pAddress",address},{"pValue",value},{"pNewPropertyNumber",newPropertyNumber}}),
                 _ => View()
             };
         }
 
-        public IActionResult Owners_Index(int? pOption, int? pPropertyNum, string? pAddress, float? pValue,
-            int? pNewPropertyNumber)
+        public IActionResult Owners_Index(int? option, int? docType, string? docValue, string? name, string? newDocValue)
         {
-            Console.WriteLine(pOption);
-            return pOption switch
+            return option switch
             {
-                0 => Redirect("Results/PropertiesUsers?pPropertyNum=PropertyNum"),
-                1 => Redirect("Results/AllProperties"),
-                2 => Redirect("Results/InsertProperty?pPropertyNum=pPropertyNum&pAddress=pAddress&pValue=pValue"),
-                3 => Redirect("Results/DeleteProperty?pPropertyNum=pPropertyNum"),
-                4 => Redirect(
-                    "Results/UpdateProperty?pPropertyNum=pPropertyNum&pAddress=pAddress&pValue=pValue&pNewPropertyNumber"),
+                0 => RedirectToAction("AllOwners","Results"),
+                1 => RedirectToAction("OwnerInfo","Results",new RouteValueDictionary{{"pDocValue",docValue}}),
+                2 => RedirectToAction("OwnerProperties","Results",new RouteValueDictionary{{"pDocValue",docValue}}),
+                3 => RedirectToAction("InsertOwner","Results",new RouteValueDictionary{{"pDocValue",docValue},{"pDocType",docType},{"pName",name}}),
+                4 => RedirectToAction("DeleteOwner","Results",new RouteValueDictionary{{"pDocValue",docValue}}),
+                5 => RedirectToAction("InsertOwner","Results",new RouteValueDictionary{{"pDocValue",docValue},{"pDocType",docType},{"pName",name},{"pNewDocValue",newDocValue}}),
                 _ => View()
             };
         }
 
-        public IActionResult Users_Index(int? pOption, int? pPropertyNum, string? pAddress, float? pValue,
-            int? pNewPropertyNumber)
+        public IActionResult Users_Index(int? option, string? name,bool? isAdmin,string? password,string? newName)
         {
-            Console.WriteLine(pOption);
-            return pOption switch
+            return option switch
             {
-                0 => Redirect("Results/PropertiesUsers?pPropertyNum=PropertyNum"),
-                1 => Redirect("Results/AllProperties"),
-                2 => Redirect("Results/InsertProperty?pPropertyNum=pPropertyNum&pAddress=pAddress&pValue=pValue"),
-                3 => Redirect("Results/DeleteProperty?pPropertyNum=pPropertyNum"),
-                4 => Redirect(
-                    "Results/UpdateProperty?pPropertyNum=pPropertyNum&pAddress=pAddress&pValue=pValue&pNewPropertyNumber"),
+                0 => RedirectToAction("AllUsers","Results"),
+                1 => RedirectToAction("UserInfo","Results",new RouteValueDictionary{{"pName",name}}),
+                2 => RedirectToAction("UserProperties","Results",new RouteValueDictionary{{"pName",name}}),
+                3 => RedirectToAction("InsertUser","Results",new RouteValueDictionary{{"pName",name},{"pIsAdmin",isAdmin},{"pPassword",password}}),
+                4 => RedirectToAction("DeleteUser","Results",new RouteValueDictionary{{"pName",name}}),
+                5 => RedirectToAction("InsertUser","Results",new RouteValueDictionary{{"pName",name},{"pIsAdmin",isAdmin},{"pPassword",password},{"pNewName",newName}}),
                 _ => View()
             };
         }

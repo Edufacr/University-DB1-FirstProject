@@ -20,7 +20,7 @@
     </form>
 </div>
 <div>
-    <h2>List the users that can acces a property</h2>
+    <h2> Display Owner Info</h2>
     <form>
         <p>
             <input type="hidden" name = "option" value = "1" />
@@ -30,10 +30,20 @@
     </form>
 </div>
 <div>
-    <h2>Inserts a new property</h2>
+    <h2>List the users that can acces a property</h2>
     <form>
         <p>
             <input type="hidden" name = "option" value = "2" />
+            Property Number: <input type="text" name="propertyNumber">
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Inserts a new property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "3" />
             Property Number: <input type="text" name="propertyNumber">
             Address: <input type="text" name="address">
             Value: <input type="number" name="value">
@@ -45,7 +55,7 @@
     <h2>Deletes a property</h2>
     <form>
         <p>
-            <input type="hidden" name = "option" value = "3" />
+            <input type="hidden" name = "option" value = "4" />
             Property Number: <input type="text" name="propertyNumber">
             <input type="submit" value="Delete"/>
         </p>
@@ -55,7 +65,7 @@
     <h2>Updates a property</h2>
     <form>
         <p>
-            <input type="hidden" name = "option" value = "4" />
+            <input type="hidden" name = "option" value = "5" />
             Property Number: <input type="text" name="propertyNumber">
             Address: <input type="text" name="address">
             Value: <input type="number" name="value">
