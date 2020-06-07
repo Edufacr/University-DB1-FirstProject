@@ -20,7 +20,7 @@ namespace University_DB1_FirstProject
             string connectionString = IConnectionStrings.CONNECTIONSTRING;
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = connectionString;
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();    
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

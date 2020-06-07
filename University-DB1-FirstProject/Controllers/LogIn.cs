@@ -11,7 +11,7 @@ namespace University_DB1_FirstProject.Controllers
         {
             if (pUsername == "h")
             {
-                return View("LogInScreen");
+                return Redirect("Home/Properties_Querry");
             }
             return View();
         }
