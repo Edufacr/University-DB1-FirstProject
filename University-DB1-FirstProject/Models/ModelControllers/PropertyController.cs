@@ -44,6 +44,9 @@ namespace University_DB1_FirstProject.Controllers
             
             GetPropertyInfoByPropertyNumber = new SqlCommand("SP_getPropertyInfoByPropertyNumber", connection);
             GetPropertyInfoByPropertyNumber.CommandType = CommandType.StoredProcedure;
+            
+            GetActiveProperties = new SqlCommand("SP_getActiveProperties", connection);
+            GetActiveProperties.CommandType = CommandType.StoredProcedure;
         }
 
 
@@ -52,7 +55,7 @@ namespace University_DB1_FirstProject.Controllers
             InsertProperty.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value =  "Unnamed";
             InsertProperty.Parameters.Add("@pValue", SqlDbType.Money).Value = property.Value;
             InsertProperty.Parameters.Add("@pAddress", SqlDbType.VarChar, 100).Value = property.Address;
-            InsertProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value = property.Value;
+            InsertProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value = property.PropertyNumber;
 
             return ExecuteNonQueryCommand(InsertProperty);
 
@@ -109,13 +112,20 @@ namespace University_DB1_FirstProject.Controllers
             return ExecuteQueryCommand(GetPropertyInfoByPropertyNumber);
         }
         
+        public List<PropertyDisplayModel> ExecuteGetActiveProperties()
+        {
+            return ExecuteQueryCommand(GetActiveProperties);
+        }
+        
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
                 return result;
             }
@@ -140,8 +150,8 @@ namespace University_DB1_FirstProject.Controllers
                 {
                     PropertyDisplayModel property = new PropertyDisplayModel();
                     
-                    property.Address = Convert.ToString(reader["PropertyAddress"]);
-                    property.Value = Convert.ToSingle(reader["PropertyValue"]);
+                    property.Address = Convert.ToString(reader["Address"]);
+                    property.Value = Convert.ToSingle(reader["Value"]);
                     property.PropertyNumber = Convert.ToInt32(reader["PropertyNumber"]);
                     
                     result.Add(property);
