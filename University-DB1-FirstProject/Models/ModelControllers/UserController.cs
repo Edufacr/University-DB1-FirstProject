@@ -129,11 +129,11 @@ namespace University_DB1_FirstProject.Controllers
         
         public bool ExecuteValidatePassword(string username, string passwordEntry)
         {
+            
             ValidatePassword.Parameters.Add("@Username", SqlDbType.VarChar, 50).Value = username;
             ValidatePassword.Parameters.Add("@Password", SqlDbType.VarChar, 50).Value = passwordEntry;
 
             int result = ExecuteNonQueryCommand(ValidatePassword);
-
             if (result == -5000)
             {
                 return false; //incorrect password
@@ -147,13 +147,15 @@ namespace University_DB1_FirstProject.Controllers
         {
             
             string password;
-            ValidatePassword.Parameters.Add("@Username", SqlDbType.VarChar, 50).Value = user.Name;
-
+            
+            GetPassword.Parameters.Add("@pUsername", SqlDbType.VarChar, 50).Value = user.Name;
+            
             try
             {
                 
                 connection.Open();
-                SqlDataReader reader = ValidatePassword.ExecuteReader();
+                SqlDataReader reader = GetPassword.ExecuteReader();
+                reader.Read();
                 password = Convert.ToString(reader["Password"]);   
                 connection.Close();
                 
@@ -170,11 +172,13 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
                 return result;
             }
@@ -201,7 +205,7 @@ namespace University_DB1_FirstProject.Controllers
                     
                     user.Name = Convert.ToString(reader["Username"]);
 
-                    user.isAdmin = Convert.ToBoolean(reader["ActiveUsers"]);
+                    user.isAdmin = Convert.ToBoolean(reader["UserType"]);
                     
                     result.Add(user);
                     
