@@ -49,6 +49,7 @@ namespace University_DB1_FirstProject.Controllers
                 3 => RedirectToAction("InsertOwner","Results",new RouteValueDictionary{{"pDocValue",docValue},{"pDocType",docType},{"pName",name}}),
                 4 => RedirectToAction("DeleteOwner","Results",new RouteValueDictionary{{"pDocValue",docValue}}),
                 5 => RedirectToAction("InsertOwner","Results",new RouteValueDictionary{{"pDocValue",docValue},{"pDocType",docType},{"pName",name},{"pNewDocValue",newDocValue}}),
+                6 => RedirectToAction("OwnerInfoByName","Results",new RouteValueDictionary{{"pName",name}}),
                 _ => View()
             };
         }

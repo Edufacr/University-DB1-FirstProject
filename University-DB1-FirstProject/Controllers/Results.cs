@@ -63,6 +63,10 @@ namespace University_DB1_FirstProject.Controllers
         {
             return View();
         }
+        public IActionResult OwnerInfoByName(string pName)
+        {
+            return View("OwnerInfo");
+        }
         public IActionResult InsertOwner(string pDocValue,int pDocTypeId, string pName)
         {
             return View("Accomplished");
