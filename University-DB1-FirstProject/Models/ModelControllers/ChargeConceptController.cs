@@ -17,9 +17,12 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetCCsOnProperty;
         private SqlCommand GetCcChildValue;
         
-        public ChargeConceptController(SqlConnection pConnection)
+        public static ChargeConceptController Singleton;
+
+        
+        private ChargeConceptController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertCCProperty = new SqlCommand("SP_insertCC_onPropety", connection);
             InsertCCProperty.CommandType = CommandType.StoredProcedure;
@@ -36,6 +39,13 @@ namespace University_DB1_FirstProject.Controllers
             GetCcChildValue = new SqlCommand("SP_getChildValue", connection);
             GetCcChildValue.CommandType = CommandType.StoredProcedure;
             
+        }
+        
+        public static ChargeConceptController getInstance()
+        {
+            
+            return Singleton ??= new ChargeConceptController();
+
         }
 
 
@@ -103,8 +113,9 @@ namespace University_DB1_FirstProject.Controllers
                     
                     result.Add(ccOnProperty);
                     
+                    
                 }
-                
+                GetCCsOnProperty.Parameters.Clear();
                 connection.Close();
             }
             catch (Exception e)

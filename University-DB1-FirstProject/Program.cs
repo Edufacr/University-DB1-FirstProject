@@ -17,15 +17,14 @@ namespace University_DB1_FirstProject
     {
         public static void Main(string[] args)
         {
-            string connectionString = IConnectionStrings.CONNECTIONSTRING;
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = connectionString;
+
+            SqlConnection connection = DBConnection.getInstance().Connection;
             
-            UserController userController = new UserController(connection);
-            LegalOwnerController legalOwnerController = new LegalOwnerController(connection);
-            OwnerController ownerController = new OwnerController(connection);
-            PropertyController propertyController = new PropertyController(connection);
-            ChargeConceptController chargeConceptController = new ChargeConceptController(connection);
+            UserController userController = UserController.getInstance();
+            LegalOwnerController legalOwnerController = LegalOwnerController.getInstance();
+            OwnerController ownerController = OwnerController.getInstance();
+            PropertyController propertyController = PropertyController.getInstance();
+            ChargeConceptController chargeConceptController = ChargeConceptController.getInstance();
 
             UserDisplayModel testUser = new UserDisplayModel();
             testUser.Name = "LDiaz";
@@ -57,14 +56,6 @@ namespace University_DB1_FirstProject
             testOwner.DocValue = "301659662";
             testOwner.DocType = "Cedula Juridica";
 
-            //Console.WriteLine(chargeConceptController.ExecuteGetCcChildValue(testCCProperty));
-
-            //Console.WriteLine(userController.ExecuteValidatePassword(user.Name, "123hola"));
-
-            //string password = userController.ExecuteGetPassword(user);
-
-            //Console.WriteLine(password);
-
             OwnerRegisterModel registerOwner = new OwnerRegisterModel();
             registerOwner.Name = "Ferrer S.A.";
             registerOwner.DocValue = "301659662";
@@ -75,22 +66,7 @@ namespace University_DB1_FirstProject
             registerProperty.Value = (float)12348471.20;
             registerProperty.PropertyNumber = 1176180;
 
-
-            //propertyController.ExecuteInsertProperty(registerProperty);
-            //ownerController.ExecuteInsertOwner(registerOwner);
-            
-            ownerController.ExecuteInsertOwnerOfProperty(testProperty, testOwner);
-            //List<PropertyDisplayModel> testResult = propertyController.ExecuteGetActiveProperties();
-            /*
-            foreach (PropertyDisplayModel element in  testResult)
-            {
-                Console.WriteLine(element.Address);
-                //Console.WriteLine(element.isAdmin);
-                Console.WriteLine("-----------");
-            }
-            */
-            
-            //CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
