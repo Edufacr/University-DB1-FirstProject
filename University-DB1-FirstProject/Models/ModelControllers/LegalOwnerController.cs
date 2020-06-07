@@ -66,7 +66,7 @@ namespace University_DB1_FirstProject.Controllers
         
         public List<LegalOwnerDisplayModel> ExecuteGetLegalOwnerByDocValue(LegalOwnerDisplayModel legalOwner)
         {
-            GetActiveLegalOwners.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = legalOwner.DocValue;
+            GetLegalOwnerByDocValue.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = legalOwner.DocValue;
             List<LegalOwnerDisplayModel> result = ExecuteQueryCommand(GetLegalOwnerByDocValue);
             return result;
             
@@ -74,11 +74,13 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
                 return result;
             }
@@ -107,7 +109,7 @@ namespace University_DB1_FirstProject.Controllers
                     legalOwner.DocValue = Convert.ToString(reader["LegalDocValue"]);
                     legalOwner.ResponsibleName = Convert.ToString(reader["ResponsibleName"]);
                     legalOwner.RespDocValue = Convert.ToString(reader["RespDocValue"]);
-                    legalOwner.RespDocType = Convert.ToString(reader["Doctype"]);
+                    legalOwner.RespDocType = Convert.ToString(reader["RespDocType"]);
                     
                     result.Add(legalOwner);
                     
