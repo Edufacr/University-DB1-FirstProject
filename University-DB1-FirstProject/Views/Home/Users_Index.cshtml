@@ -1,18 +1,78 @@
-﻿
-
-@{
+﻿@{
     Layout = null;
+    
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>title</title>
+    <title>Users</title>
 </head>
 <body>
 <div>
-      
+    <h2>List all Users</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "0" />
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2> Display User Info</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "1" />
+            Username: <input type="text" name="name">
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>List the properties that can be access by a user</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "2" />
+            Username: <input type="text" name="name">
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Inserts a new user</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "3" />
+            Username: <input type="text" name="name">
+            Password: <input type="text" name="password">
+            Is Admin: <input type="checkbox" name="isAdmin">
+            <input type="submit" value="Insert"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Deletes a user</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "4" />
+            Username: <input type="text" name="name">
+            <input type="submit" value="Delete"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Updates a user</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "5" />
+            Username: <input type="text" name="name">
+            Password: <input type="text" name="password">
+            Is Admin: <input type="checkbox" name="isAdmin">
+            New Username: <input type="text" name="newName">
+            <input type="submit" value="Update"/>
+        </p>
+    </form>
 </div>
 </body>
 </html>
