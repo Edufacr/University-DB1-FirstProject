@@ -1,24 +1,78 @@
-﻿
-
-@{
+﻿@{
     Layout = null;
+    
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>title</title>
+    <title>Owners</title>
 </head>
 <body>
 <div>
-<form asp-controller="LogIn" asp-action="Index">
-    <p>
-        Username: <input type="text" name="pUsername"> 
-        Password: <input type="text" name="pPassword">
-        <input type="submit" value="Log-In" />
-    </p>
-</form>      
+    <h2>List all Owners</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "0" />
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Owner Information</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "1" />   
+            Owner doc Id: <input type="text" name="docValue">
+            <input type="submit" value="Search"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>List the properties own by an owner</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "2" />
+            Owner doc Id: <input type="text" name="docValue">
+            <input type="submit" value="List"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Insert a new Owner</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "3" />
+            Owner doc Id: <input type="text" name="docValue">
+            Doc id type: <input type="text" name="docTypeId">
+            Name: <input type="number" name="name">
+            <input type="submit" value="Insert"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Deletes an owner</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "4" />
+            Owner doc Id: <input type="text" name="docValue">
+            <input type="submit" value="Delete"/>
+        </p>
+    </form>
+</div>
+<div>
+    <h2>Updates a property</h2>
+    <form>
+        <p>
+            <input type="hidden" name = "option" value = "5" />
+            Owner doc Id: <input type="text" name="docValue">
+            Doc id type: <input type="text" name="docTypeId">
+            Name: <input type="number" name="name">
+            New owner doc id: <input type="text" name="newDocValue">
+            <input type="submit" value="Update"/>
+        </p>
+    </form>
 </div>
 </body>
 </html>
