@@ -18,11 +18,14 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetPropertiesOfUser;
         private SqlCommand GetPropertyInfoByName;
         private SqlCommand GetPropertyInfoByPropertyNumber;
+        
+        public static PropertyController Singleton;
 
-        public PropertyController(SqlConnection pConnection)
+
+        private PropertyController()
         {
 
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertProperty = new SqlCommand("SP_insertProperty", connection);
             InsertProperty.CommandType = CommandType.StoredProcedure;
@@ -47,6 +50,11 @@ namespace University_DB1_FirstProject.Controllers
             
             GetActiveProperties = new SqlCommand("SP_getActiveProperties", connection);
             GetActiveProperties.CommandType = CommandType.StoredProcedure;
+        }
+        
+        public static PropertyController getInstance()
+        {
+            return Singleton ??= new PropertyController();
         }
 
 
@@ -127,6 +135,8 @@ namespace University_DB1_FirstProject.Controllers
                 command.ExecuteNonQuery();
                 int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
+
                 return result;
             }
             catch (Exception e)
@@ -156,8 +166,8 @@ namespace University_DB1_FirstProject.Controllers
                     
                     result.Add(property);
                     
-                }
-                
+                }               
+                command.Parameters.Clear();
                 connection.Close();
             }
             catch (Exception e)
