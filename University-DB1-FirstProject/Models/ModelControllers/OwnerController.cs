@@ -22,10 +22,13 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetActiveOwners;
         private SqlCommand GetOwnersByName;
         private SqlCommand GetOwnersByDocValue;
+        
+        public static OwnerController Singleton;
+
                 
-        public OwnerController(SqlConnection pConnection)
+        private OwnerController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertOwner = new SqlCommand("SP_insertOwner", connection);
             InsertOwner.CommandType = CommandType.StoredProcedure;
@@ -53,6 +56,13 @@ namespace University_DB1_FirstProject.Controllers
             
             GetOwnersByDocValue = new SqlCommand("SP_getOwnerInfoByDocValue", connection);
             GetOwnersByDocValue.CommandType = CommandType.StoredProcedure;
+        }
+        
+        public static OwnerController getInstance()
+        {
+            
+            return Singleton ??= new OwnerController();
+
         }
 
         public int ExecuteInsertOwner(OwnerRegisterModel ownerInstance)
@@ -154,6 +164,8 @@ namespace University_DB1_FirstProject.Controllers
                 command.ExecuteNonQuery();
                 int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
+
                 return result;
             }
             catch (Exception e)
@@ -184,7 +196,8 @@ namespace University_DB1_FirstProject.Controllers
                     result.Add(owner);
                     
                 }
-                
+                command.Parameters.Clear();
+
                 connection.Close();
             }
             catch (Exception e)

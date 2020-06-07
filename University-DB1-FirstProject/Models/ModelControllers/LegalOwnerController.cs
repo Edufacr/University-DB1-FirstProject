@@ -16,9 +16,12 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetActiveLegalOwners;
         private SqlCommand GetLegalOwnerByDocValue;
         
-        public LegalOwnerController(SqlConnection pConnection)
+        public static LegalOwnerController Singleton;
+
+        
+        private LegalOwnerController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertLegalOwner = new SqlCommand("SP_insertLegalOwner", connection);
             InsertLegalOwner.CommandType = CommandType.StoredProcedure;
@@ -35,6 +38,15 @@ namespace University_DB1_FirstProject.Controllers
             GetLegalOwnerByDocValue.CommandType = CommandType.StoredProcedure;
         }
 
+        
+        public static LegalOwnerController getInstance()
+        {
+            
+            return Singleton ??= new LegalOwnerController();
+            
+        }
+
+        
 
         public int ExecuteInsertLegalOwner(LegalOwnerRegisterModel legalOwner)
         {
@@ -82,6 +94,8 @@ namespace University_DB1_FirstProject.Controllers
                 command.ExecuteNonQuery();
                 int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
+
                 return result;
             }
             catch (Exception e)
@@ -114,7 +128,8 @@ namespace University_DB1_FirstProject.Controllers
                     result.Add(legalOwner);
                     
                 }
-                
+                command.Parameters.Clear();
+
                 connection.Close();
             }
             catch (Exception e)
