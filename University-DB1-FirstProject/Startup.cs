@@ -39,8 +39,11 @@ namespace University_DB1_FirstProject
                     name: "LogIn",
                     pattern: "{controller=LogIn}/{action=Index}/{pId?}");
                 endpoints.MapControllerRoute(
-                    name: "Properties_Querry",
-                    pattern: "{controller=LogIn}/{action=Index}/{pId?}");
+                    name: "PropertiesUsers",
+                    pattern: "{controller=Results}/{action=PropertiesUsers}/{pId?}");
+                endpoints.MapControllerRoute(
+                    name: "InsertProperty",
+                    pattern: "{controller=Results}/{action=InsertProperty}/{pId?}");
             });
         }
     }

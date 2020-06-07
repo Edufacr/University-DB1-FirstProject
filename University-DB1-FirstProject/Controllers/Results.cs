@@ -13,7 +13,7 @@ namespace University_DB1_FirstProject.Controllers
         // GET
         public IActionResult PropertiesUsers(int pPropertyNumber)
         {
-            Console.WriteLine("DisplayResults");
+            Console.WriteLine(pPropertyNumber);
             ViewData["PNum"] = pPropertyNumber;
             PropertyDisplayModel property = new PropertyDisplayModel {PropertyNumber = pPropertyNumber};
             List<UserDisplayModel> list = _userController.ExecuteGetUsersOfProperty(property);
@@ -21,28 +21,26 @@ namespace University_DB1_FirstProject.Controllers
         }
         public IActionResult AllProperties()
         {
-            Console.WriteLine("DisplayResults");
             List<PropertyDisplayModel> list = new List<PropertyDisplayModel>();
             return View(list);
         }
-        public IActionResult InsertProperty(int pPropertyNumber,string pAddress, SqlMoney pValue)
+        public IActionResult InsertProperty(int pPropertyNumber,string pAddress, float pValue)
         {
             PropertyRegisterModel property = new PropertyRegisterModel()
             {
-                PropertyNumber = pPropertyNumber, Address = pAddress, Value = 1
+                PropertyNumber = pPropertyNumber, Address = pAddress, Value = pValue
             };
             _propertyController.ExecuteInsertProperty(property);
-            Console.WriteLine("DisplayResults");
             return View("Accomplished");
         }
-        public IActionResult UpdateProperty(int pPropertyNumber,string pAddress, SqlMoney pValue, int pNewPropertyNumber)
+        public IActionResult UpdateProperty(int pPropertyNumber,string pAddress, float pValue, int pNewPropertyNumber)
         {
-            Console.WriteLine("DisplayResults");
             return View("Accomplished");
         }
         public IActionResult DeleteProperty(int pPropertyNumber)
         {
-            Console.WriteLine("DisplayResults");
+            PropertyDisplayModel property = new PropertyDisplayModel {PropertyNumber = pPropertyNumber};
+            Console.WriteLine(pPropertyNumber);
             return View("Accomplished");
         }
     }
