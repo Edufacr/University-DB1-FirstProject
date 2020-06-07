@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using University_DB1_FirstProject.Models;
 
 namespace University_DB1_FirstProject.Controllers
 {
@@ -12,13 +15,15 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand UpdateUser;
         
         private SqlCommand DeleteUserOfProperty;
-        private SqlCommand InsertUserOfProperty; //TODO
+        private SqlCommand InsertUserOfProperty; 
 
        
         private SqlCommand GetUsersOfProperty;
         private SqlCommand GetActiveUsers;
         private SqlCommand GetUsersByUsername;
 
+        private SqlCommand ValidatePassword;
+        private SqlCommand GetPassword;
 
         public static UserController Singleton;
 
@@ -36,20 +41,23 @@ namespace University_DB1_FirstProject.Controllers
             UpdateUser = new SqlCommand("SP_updateUser", connection);
             UpdateUser.CommandType = CommandType.StoredProcedure;
             
-            DeleteUserOfProperty = new SqlCommand("SP_deletePropertyUser", connection);
+            DeleteUserOfProperty = new SqlCommand("SP_deletePropertiesUser", connection);
             DeleteUserOfProperty.CommandType = CommandType.StoredProcedure;
             
-            InsertUserOfProperty = new SqlCommand("SP_deletePropertyUser", connection);
+            InsertUserOfProperty = new SqlCommand("SP_insertPropertiesUsers", connection);
             InsertUserOfProperty.CommandType = CommandType.StoredProcedure;
             
-            GetUsersOfProperty = new SqlCommand("SP_getUserOfProperty", connection);
+            GetUsersOfProperty = new SqlCommand("SP_getPropertyUsers", connection);
             GetUsersOfProperty.CommandType = CommandType.StoredProcedure;
             
             GetActiveUsers = new SqlCommand("SP_getActiveUsers", connection);
             GetActiveUsers.CommandType = CommandType.StoredProcedure;
             
-            GetUsersByUsername = new SqlCommand("SP_getUserInfoByName", connection);
-            GetUsersByUsername.CommandType = CommandType.StoredProcedure;
+            ValidatePassword = new SqlCommand("SP_validateUserPsswrd", connection);
+            ValidatePassword.CommandType = CommandType.StoredProcedure;
+            
+            GetPassword = new SqlCommand("SP_getUserPassword", connection);
+            GetPassword.CommandType = CommandType.StoredProcedure;
 
         }
 
@@ -71,6 +79,10 @@ namespace University_DB1_FirstProject.Controllers
             
         }
         
+        public int ExecuteDeleteUser(UserDisplayModel user)
+        {
+            
+            DeleteUser.Parameters.Add("@pUsername", SqlDbType.VarChar, 50).Value = user.Name;
 
             return ExecuteNonQueryCommand(DeleteUser);
             
@@ -223,4 +235,5 @@ namespace University_DB1_FirstProject.Controllers
         }
 
     }
+    
 }

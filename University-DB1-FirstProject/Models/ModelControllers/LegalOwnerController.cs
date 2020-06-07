@@ -52,8 +52,8 @@ namespace University_DB1_FirstProject.Controllers
         {
             InsertLegalOwner.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = legalOwner.ResponsibleName;
             InsertLegalOwner.Parameters.Add("@pResp_DocType_Id", SqlDbType.Int).Value = legalOwner.RespDocTypeId;
-            InsertLegalOwner.Parameters.Add("@pResp_DocValue", SqlDbType.Int).Value = legalOwner.RespDocValue;
-            InsertLegalOwner.Parameters.Add("@pLegalOwner_DocValue", SqlDbType.Int).Value = legalOwner.DocValue;
+            InsertLegalOwner.Parameters.Add("@pResp_DocValue", SqlDbType.VarChar, 30).Value = legalOwner.RespDocValue;
+            InsertLegalOwner.Parameters.Add("@pLegalOwner_DocValue", SqlDbType.VarChar, 30).Value = legalOwner.DocValue;
             
             return ExecuteNonQueryCommand(InsertLegalOwner);
             
@@ -64,8 +64,8 @@ namespace University_DB1_FirstProject.Controllers
             UpdateLegalOwner.Parameters.Add("@pNewResponsibleName", SqlDbType.VarChar, 50).Value =
                 legalOwner.ResponsibleName;
             UpdateLegalOwner.Parameters.Add("@pNewResp_DocId_type", SqlDbType.Int).Value = legalOwner.RespDocType;
-            UpdateLegalOwner.Parameters.Add("@pNewResp_DocValue", SqlDbType.Int).Value = legalOwner.RespDocValue;
-            UpdateLegalOwner.Parameters.Add("@pLegalOwner_DocValue", SqlDbType.Int).Value = legalOwner.DocValue;
+            UpdateLegalOwner.Parameters.Add("@pNewResp_DocValue", SqlDbType.VarChar, 30).Value = legalOwner.RespDocValue;
+            UpdateLegalOwner.Parameters.Add("@pLegalOwner_DocValue", SqlDbType.VarChar, 30).Value = legalOwner.DocValue;
             
             return ExecuteNonQueryCommand(UpdateLegalOwner);
         }
@@ -120,7 +120,7 @@ namespace University_DB1_FirstProject.Controllers
                     LegalOwnerDisplayModel legalOwner = new LegalOwnerDisplayModel();
                     
                     legalOwner.Name = Convert.ToString(reader["LegalName"]);
-                    legalOwner.DocValue = Convert.ToInt32(reader["LegalDocValue"]);
+                    legalOwner.DocValue = Convert.ToString(reader["LegalDocValue"]);
                     legalOwner.ResponsibleName = Convert.ToString(reader["ResponsibleName"]);
                     legalOwner.RespDocValue = Convert.ToString(reader["RespDocValue"]);
                     legalOwner.RespDocType = Convert.ToString(reader["RespDocType"]);
