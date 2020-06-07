@@ -8,11 +8,15 @@
 
 <html>
 <head>
-    <title>title</title>
+    <title>Info of Owner: @ViewData["Id"]</title>
 </head>
 <body>
 <div>
-      
+    <ul>
+        <li> Doc Id: @Model.DocValue</li>
+        <li> Doc Id type: @Model.DocType</li>
+        <li> Name: @Model.Name </li>
+    </ul>
 </div>
 </body>
 </html>

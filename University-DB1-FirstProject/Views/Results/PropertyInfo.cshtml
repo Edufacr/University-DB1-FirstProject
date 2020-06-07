@@ -8,11 +8,15 @@
 
 <html>
 <head>
-    <title>title</title>
+    <title>Info of Property number: @ViewData["Id"]</title>
 </head>
 <body>
 <div>
-      
+    <ul>
+        <li> Property number: @Model.PropertyNumber</li>
+        <li> Value: @Model.Value</li>
+        <li> Address: @Model.Address </li>
+    </ul>
 </div>
 </body>
 </html>
