@@ -7,7 +7,7 @@ GO
 -- Create date: 04/06/2020
 -- Description:	Gets all properties seen by a user
 -- =============================================
-CREATE PROCEDURE SP_getUsersProperties
+Create PROCEDURE SP_getUsersProperties
 	-- Add the parameters for the stored procedure here
     @pUsername VARCHAR(50)
 AS
@@ -20,7 +20,7 @@ BEGIN TRY
 	DECLARE @UserId int;
 	BEGIN TRANSACTION
 		SET @UserId = (Select Id from activeUsers where Username = @pUsername)
-        SELECT PropertyName,PropertyAddress,PropertyNumber,PropertyValue from activePropertiesUsersRelations
+        SELECT PropertyAddress as Address,PropertyNumber,PropertyValue as Value from activePropertiesUsersRelations
         where UserId = @UserId;
 	COMMIT
 	return @@ROWCOUNT;

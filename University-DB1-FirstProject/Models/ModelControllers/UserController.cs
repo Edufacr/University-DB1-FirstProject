@@ -25,10 +25,12 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand ValidatePassword;
         private SqlCommand GetPassword;
 
+        public static UserController Singleton;
 
-        public UserController(SqlConnection pConnection)
+
+        private UserController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertUser = new SqlCommand("SP_insertUser", connection);
             InsertUser.CommandType = CommandType.StoredProcedure;
@@ -44,7 +46,6 @@ namespace University_DB1_FirstProject.Controllers
             
             InsertUserOfProperty = new SqlCommand("SP_insertPropertiesUsers", connection);
             InsertUserOfProperty.CommandType = CommandType.StoredProcedure;
-
             
             GetUsersOfProperty = new SqlCommand("SP_getPropertyUsers", connection);
             GetUsersOfProperty.CommandType = CommandType.StoredProcedure;
@@ -59,6 +60,12 @@ namespace University_DB1_FirstProject.Controllers
             GetPassword.CommandType = CommandType.StoredProcedure;
 
         }
+
+        public static UserController getInstance()
+        {
+            return Singleton ??= new UserController();
+        }
+            
 
 
         public int ExecuteInsertUser(UserRegisterModel user)
@@ -129,11 +136,14 @@ namespace University_DB1_FirstProject.Controllers
         
         public bool ExecuteValidatePassword(string username, string passwordEntry)
         {
+            
+            Console.WriteLine(username);
+            Console.WriteLine(passwordEntry);
+            
             ValidatePassword.Parameters.Add("@Username", SqlDbType.VarChar, 50).Value = username;
             ValidatePassword.Parameters.Add("@Password", SqlDbType.VarChar, 50).Value = passwordEntry;
 
             int result = ExecuteNonQueryCommand(ValidatePassword);
-
             if (result == -5000)
             {
                 return false; //incorrect password
@@ -147,13 +157,15 @@ namespace University_DB1_FirstProject.Controllers
         {
             
             string password;
-            ValidatePassword.Parameters.Add("@Username", SqlDbType.VarChar, 50).Value = user.Name;
-
+            
+            GetPassword.Parameters.Add("@pUsername", SqlDbType.VarChar, 50).Value = user.Name;
+            
             try
             {
                 
                 connection.Open();
-                SqlDataReader reader = ValidatePassword.ExecuteReader();
+                SqlDataReader reader = GetPassword.ExecuteReader();
+                reader.Read();
                 password = Convert.ToString(reader["Password"]);   
                 connection.Close();
                 
@@ -170,18 +182,22 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
                 return result;
             }
             catch (Exception e)
             {
                 throw (e);
             }
+            
 
         }
         
@@ -201,12 +217,12 @@ namespace University_DB1_FirstProject.Controllers
                     
                     user.Name = Convert.ToString(reader["Username"]);
 
-                    user.isAdmin = Convert.ToBoolean(reader["ActiveUsers"]);
+                    user.isAdmin = Convert.ToBoolean(reader["UserType"]);
                     
                     result.Add(user);
                     
                 }
-                
+                command.Parameters.Clear();
                 connection.Close();
             }
             catch (Exception e)

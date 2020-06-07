@@ -17,8 +17,12 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetCCsOnProperty;
         private SqlCommand GetCcChildValue;
         
-        public ChargeConceptController()
+        public static ChargeConceptController Singleton;
+
+        
+        private ChargeConceptController()
         {
+            connection = DBConnection.getInstance().Connection;
             
             InsertCCProperty = new SqlCommand("SP_insertCC_onPropety", connection);
             InsertCCProperty.CommandType = CommandType.StoredProcedure;
@@ -35,6 +39,13 @@ namespace University_DB1_FirstProject.Controllers
             GetCcChildValue = new SqlCommand("SP_getChildValue", connection);
             GetCcChildValue.CommandType = CommandType.StoredProcedure;
             
+        }
+        
+        public static ChargeConceptController getInstance()
+        {
+            
+            return Singleton ??= new ChargeConceptController();
+
         }
 
 
@@ -77,7 +88,8 @@ namespace University_DB1_FirstProject.Controllers
         public List<CCPropertyDisplayModel> ExecuteGetCCsOnProperty(PropertyDisplayModel property)
         {
             List<CCPropertyDisplayModel> result = new List<CCPropertyDisplayModel>();
-            
+            GetCCsOnProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value 
+                = property.PropertyNumber;
             try
             {
                 connection.Open();
@@ -101,8 +113,9 @@ namespace University_DB1_FirstProject.Controllers
                     
                     result.Add(ccOnProperty);
                     
+                    
                 }
-                
+                GetCCsOnProperty.Parameters.Clear();
                 connection.Close();
             }
             catch (Exception e)
@@ -116,14 +129,17 @@ namespace University_DB1_FirstProject.Controllers
         
         public string ExecuteGetCcChildValue(CCPropertyDisplayModel chargeConcept)
         {
-            GetCcChildValue.Parameters.Add("@pName", SqlDbType.VarChar, 50);
+            GetCcChildValue.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = chargeConcept.ChargeConceptName;
+            Console.WriteLine(chargeConcept.ChargeConceptName);
+           
 
-            //int CcType = ExecuteNonQueryCommand(GetCcChildValue);
             string result;
             try
             {
                 connection.Open();
-                SqlDataReader reader = GetCCsOnProperty.ExecuteReader();
+                //Console.WriteLine(GetCcChildValue.ExecuteNonQuery());
+                SqlDataReader reader = GetCcChildValue.ExecuteReader();
+                reader.Read();
                 result = Convert.ToString(reader["Amount"]);
                 connection.Close();
                 return result;
@@ -139,11 +155,13 @@ namespace University_DB1_FirstProject.Controllers
         
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
                 return result;
             }

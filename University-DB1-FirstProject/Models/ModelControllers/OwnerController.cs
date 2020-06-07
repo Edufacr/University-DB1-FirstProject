@@ -22,10 +22,13 @@ namespace University_DB1_FirstProject.Controllers
         private SqlCommand GetActiveOwners;
         private SqlCommand GetOwnersByName;
         private SqlCommand GetOwnersByDocValue;
+        
+        public static OwnerController Singleton;
+
                 
-        public OwnerController(SqlConnection pConnection)
+        private OwnerController()
         {
-            connection = pConnection;
+            connection = DBConnection.getInstance().Connection;
             
             InsertOwner = new SqlCommand("SP_insertOwner", connection);
             InsertOwner.CommandType = CommandType.StoredProcedure;
@@ -54,11 +57,18 @@ namespace University_DB1_FirstProject.Controllers
             GetOwnersByDocValue = new SqlCommand("SP_getOwnerInfoByDocValue", connection);
             GetOwnersByDocValue.CommandType = CommandType.StoredProcedure;
         }
+        
+        public static OwnerController getInstance()
+        {
+            
+            return Singleton ??= new OwnerController();
+
+        }
 
         public int ExecuteInsertOwner(OwnerRegisterModel ownerInstance)
         {
             InsertOwner.Parameters.Add("@pName", SqlDbType.VarChar, 50).Value = ownerInstance.Name;
-            InsertOwner.Parameters.Add("@pDocValue", SqlDbType.Int).Value = ownerInstance.DocValue;
+            InsertOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = ownerInstance.DocValue;
             InsertOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = ownerInstance.DocTypeId;
 
             return ExecuteNonQueryCommand(InsertOwner);
@@ -68,7 +78,7 @@ namespace University_DB1_FirstProject.Controllers
         public int ExecuteDeleteOwner(OwnerDisplayModel ownerInstance)
         {
             DeleteOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = ownerInstance.DocValue;
-            DeleteOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = ownerInstance.DocType;
+            DeleteOwner.Parameters.Add("@pDocType", SqlDbType.VarChar, 50).Value = ownerInstance.DocType;
 
             return ExecuteNonQueryCommand(DeleteOwner);
             
@@ -77,11 +87,11 @@ namespace University_DB1_FirstProject.Controllers
         public int ExecuteUpdateOwner(OwnerDisplayModel originalOwner, OwnerRegisterModel newOwner)
         {
             UpdateOwner.Parameters.Add("@pDocValue", SqlDbType.VarChar, 30).Value = originalOwner.DocValue;
-            UpdateOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = originalOwner.DocType;
+            UpdateOwner.Parameters.Add("@pDocType", SqlDbType.VarChar, 50).Value = originalOwner.DocType;
             
             UpdateOwner.Parameters.Add("@pNewName", SqlDbType.VarChar, 50).Value = newOwner.Name;
             UpdateOwner.Parameters.Add("@pNewDocValue", SqlDbType.VarChar, 30).Value = newOwner.DocValue;
-            UpdateOwner.Parameters.Add("@pNewDocType_Id", SqlDbType.Int).Value = newOwner.DocTypeId;
+            UpdateOwner.Parameters.Add("@pNewDocType_Id", SqlDbType.VarChar, 50).Value = newOwner.DocTypeId;
             
             return ExecuteNonQueryCommand(UpdateOwner);
             
@@ -94,6 +104,21 @@ namespace University_DB1_FirstProject.Controllers
             DeleteOwnerOfProperty.Parameters.Add("@pOwnerDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
             return ExecuteNonQueryCommand(DeleteOwnerOfProperty);
         }
+        
+        public int ExecuteInsertOwnerOfProperty(PropertyDisplayModel property, OwnerDisplayModel owner)
+        {
+            InsertOwnerOfProperty.Parameters.Add("@pPropertyNumber", SqlDbType.Int).Value = property.PropertyNumber;
+            InsertOwnerOfProperty.Parameters.Add("@pOwnerDocValue", SqlDbType.VarChar, 30).Value = owner.DocValue;
+            InsertOwnerOfProperty.Parameters.Add("@pOwnerDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
+            
+            Console.WriteLine(property.PropertyNumber);
+            Console.WriteLine(owner.DocValue);
+            Console.WriteLine(owner.DocType);
+            
+            return ExecuteNonQueryCommand(InsertOwnerOfProperty);
+        }
+
+        
 
         public List<OwnerDisplayModel> ExecuteGetOwnersOfProperty(PropertyDisplayModel property)
         {
@@ -106,7 +131,8 @@ namespace University_DB1_FirstProject.Controllers
         public List<OwnerDisplayModel> ExcecuteGetActiveOwners()
         {
             List<OwnerDisplayModel> result = ExecuteQueryCommand(GetActiveOwners);
-            return result;        }
+            return result;        
+        }
         
         public List<OwnerDisplayModel> ExcecuteGetOwnersByName(OwnerDisplayModel originalOwner)
         {
@@ -117,10 +143,10 @@ namespace University_DB1_FirstProject.Controllers
         }
         
         
-        public List<OwnerDisplayModel> ExcecuteGetOwnersByDocValue(OwnerDisplayModel originalOwner)
+        public List<OwnerDisplayModel> ExcecuteGetOwnersByDocValue(OwnerDisplayModel owner)
         {
-            GetOwnersByDocValue.Parameters.Add("@pDocValue",SqlDbType.VarChar, 30).Value = originalOwner.DocValue;
-            UpdateOwner.Parameters.Add("@pDocType_Id", SqlDbType.Int).Value = originalOwner.DocType;
+            GetOwnersByDocValue.Parameters.Add("@pDocValue",SqlDbType.VarChar, 30).Value = owner.DocValue;
+            GetOwnersByDocValue.Parameters.Add("@pDocType", SqlDbType.VarChar, 50).Value = owner.DocType;
             
             List<OwnerDisplayModel> result = ExecuteQueryCommand(GetOwnersByDocValue);
             return result;
@@ -130,12 +156,16 @@ namespace University_DB1_FirstProject.Controllers
 
         public int ExecuteNonQueryCommand(SqlCommand command)
         {
-            int result;
+            var returnParameter = command.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             try
             {
                 connection.Open();
-                result = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                int result = (int)returnParameter.Value;
                 connection.Close();
+                command.Parameters.Clear();
+
                 return result;
             }
             catch (Exception e)
@@ -166,7 +196,8 @@ namespace University_DB1_FirstProject.Controllers
                     result.Add(owner);
                     
                 }
-                
+                command.Parameters.Clear();
+
                 connection.Close();
             }
             catch (Exception e)

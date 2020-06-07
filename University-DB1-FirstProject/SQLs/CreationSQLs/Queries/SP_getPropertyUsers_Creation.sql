@@ -21,7 +21,7 @@ BEGIN TRY
 	DECLARE @UserId int;
 	BEGIN TRANSACTION
 		SET @PropertyId = (Select Id from activeProperties where PropertyNumber = @pPropertyNumber)
-        SELECT Username from activePropertiesUsersRelations where PropertyId = @PropertyId;
+        SELECT Username, UserType from activePropertiesUsersRelations where PropertyId = @PropertyId;
 	COMMIT
 	return @@ROWCOUNT;
 END TRY
