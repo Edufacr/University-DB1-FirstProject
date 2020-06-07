@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -32,7 +33,8 @@ namespace University_DB1_FirstProject
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                //endpoints.MapGet("/", async context => { await RedirectToRouteResult("LogIn"); });
+
                 endpoints.MapControllerRoute(
                     name: "LogIn",
                     pattern: "{controller=LogIn}/{action=Index}/{pId?}");
